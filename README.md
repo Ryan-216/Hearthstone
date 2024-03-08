@@ -1,4 +1,4 @@
-# ASOM-project-2
+# Hearthstone
 
 ## 项目简介
 年薪百万小组第二次小组项目
