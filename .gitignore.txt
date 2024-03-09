@@ -1,4 +1,4 @@
-.gitignore.txt
+*.txt
 
 # Prerequisites
 *.d
@@ -33,8 +33,14 @@
 *.out
 *.app
 
+/.vs/
+/x64/
+
 .vs/
 x64/
+
+/.vs
+/x64
 
 # Prerequisites
 *.d
