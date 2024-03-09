@@ -1,25 +1,35 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>HearthstoneClass</class>
- <widget class="QWidget" name="HearthstoneClass" >
-  <property name="objectName" >
-   <string notr="true">HearthstoneClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QWidget" name="HearthstoneClass">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>661</width>
+    <height>462</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Hearthstone</string>
-  </property>$centralwidget$
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>130</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="Hearthstone.qrc"/>
+  <include location="Hearthstone.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>

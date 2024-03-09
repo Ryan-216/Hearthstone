@@ -7,4 +7,6 @@ Hearthstone::Hearthstone(QWidget *parent)
 }
 
 Hearthstone::~Hearthstone()
-{}
+{
+
+}
