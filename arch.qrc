@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/arch">
+        <file>Assert/bg_login.png</file>
+        <file>Assert/bg_battle.png</file>
+        <file>Assert/minion.png</file>
+        <file>Assert/spell.png</file>
+    </qresource>
+</RCC>
