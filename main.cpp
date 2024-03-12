@@ -8,15 +8,10 @@ using namespace std;
 * 
 * 类
 * 
-* 玩家类 继承 QGraphicsPixmapItem
 * 
-* 卡牌类 继承 QGraphicsPixmapItem
 * 
 * arch类 继承 QWidget 调度游戏内页面
 * 
-* 视图类 继承 QGraphicsView
-* 
-* 场景类 继承 QGraphicsScene
 * 
 * 
 */
