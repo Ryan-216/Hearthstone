@@ -29,6 +29,45 @@ private:
     QGraphicsView game_view;//游戏视图
     LoginScene* login_scene = new LoginScene;//登录场景
     BattleScene* battle_scene = new BattleScene;//战斗场景
-
+    //bool eventFilter(BaseCard* card, QEvent* event);
+public:
     void end();//游戏结束
+   /* void mousePressEvent(QMouseEvent* event) override {
+        if (event->button() == Qt::LeftButton) {
+            qDebug() << "1";
+            startPoint = event->pos();
+            endPoint = startPoint;
+            isDrawing = true;
+        }
+    }
+    
+    void mouseMoveEvent(QMouseEvent* event) override {
+        qDebug() << "2";
+        if (isDrawing) {
+            
+            endPoint = event->pos();
+            update();
+        }
+    }
+
+    void mouseReleaseEvent(QMouseEvent* event) override {
+        qDebug() << "3";
+        if (event->button() == Qt::LeftButton) {
+            endPoint = startPoint;
+            isDrawing = false;
+            update();
+        }
+    }
+
+    void paintEvent(QPaintEvent* event) override {
+        QPainter painter(this);
+        painter.drawLine(startPoint, endPoint);
+    }*/
+
+private:
+    bool isDrawing;
+    QPoint startPoint;
+    QPoint endPoint;
+
+    
 };

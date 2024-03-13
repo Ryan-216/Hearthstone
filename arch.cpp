@@ -4,8 +4,9 @@
 arch::arch(QWidget *parent)
     : QWidget(parent)
 {
+    setMouseTracking(true);
     ui.setupUi(this);
-
+    this->installEventFilter(this);
     this->show();
     this->setFixedSize(width_, height_);
     game_view.setFixedSize(width_, height_);
@@ -23,11 +24,17 @@ void arch::start()
 void arch::battle()
 {
     game_view.setScene(battle_scene);    
-    battle_scene->battle();
-
-    //connect(btn_end_of_turn, &QPushButton::clicked, battle_scene, &BattleScene::end_turn);
-      
+    battle_scene->battle();      
 }
+
+//bool arch::eventFilter(BaseCard* card, QEvent* event)
+//{
+//    /*if (card->status_ == 0 && card->allow_click_)
+//    {
+//        return true;
+//    }*/
+//    return true;
+//}
 
 arch::~arch()
 {}

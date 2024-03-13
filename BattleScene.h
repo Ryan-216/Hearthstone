@@ -14,6 +14,7 @@
 #include "Hero.h"
 #include "MinionCard.h"
 #include "SpellCard.h"
+#include "qtimer.h"
 
 
 class BattleScene :
@@ -22,6 +23,9 @@ class BattleScene :
 public:
     Hero* hero_ = new Hero();
     Hero* enemy_ = new Hero();
+    QTimer* timer_;
+    QLabel* hero_status = new QLabel;
+    QLabel* enemy_status = new QLabel;
    
     /*QGraphicsTextItem* enemy_blood = new QGraphicsTextItem;
     QGraphicsTextItem* hero_blood = new QGraphicsTextItem;
@@ -32,33 +36,42 @@ public:
 
     bool turn = true;
     QVector<BaseCard*>cards_;//³é¿¨¿¨³Ø
-    QVector<BaseCard*>cards_in_battle_;//Õ½¶·¿¨³Ø
+    //QVector<BaseCard*>cards_in_battle_;//Õ½¶·¿¨³Ø
 
 
     void battle();//Õ½¶·º¯Êý
     void draw_cards(Hero* hero, int num);//³é¿¨º¯Êý
     void paint_cards(Hero* hero);//»­¿¨º¯Êý
+    void paint_text(Hero* hero);
+    void paint_all();//»­Í¼²Ûº¯Êý
+    void turn_change();
+    void manage_attack();
+    void fake_mouse();//true click false release
+    int mouse_ = 0;
+    QPointF mouse_pos;
+
+   
+private:
+    bool isDrawing;
+    QPointF startPoint;
+    QPointF endPoint;
+
 signals:
     void draw();
-    //void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouse_event);
-
-    //void mouseMoveEvent(QGraphicsSceneMouseEvent* mouse_event);
-    //void mousePressEvent(QGraphicsSceneMouseEvent* mouse_event);
-    
-
     BattleScene()
     {           
-        
         this->setSceneRect(QRect(0, 0, width_, height_));
 
         bg_.setPixmap(QPixmap(":/arch/Assert/bg_battle.png"));    
-        btn_end_of_turn->setText("End");
+        btn_end_of_turn->setText("Your Turn");
         btn_end_of_turn->resize(100, 40);
-        btn_end_of_turn->setFont(QFont("timesnewroman", 20, 8, 0));
+        btn_end_of_turn->setFont(QFont("timesnewroman", 10, 4, 0));
         btn_end_of_turn->move((width_ - btn_end_of_turn->width()) / 2 + 400, (height_ - btn_end_of_turn->height()) / 2);
 
         this->addWidget(&bg_);
         this->addWidget(btn_end_of_turn);
+        this->addWidget(hero_status);
+        this->addWidget(enemy_status);
 
         for (int i = 0; i < 20; i++)
         {

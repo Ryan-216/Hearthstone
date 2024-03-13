@@ -2,6 +2,7 @@
 #include <qgraphicsscene.h>
 #include <QGraphicsPixmapItem>
 #include <QLabel>
+#include <qstring.h>
 
 class BaseScene :
     public QGraphicsScene

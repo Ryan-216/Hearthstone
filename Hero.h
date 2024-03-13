@@ -9,13 +9,14 @@ class Hero :
 {
 public:
     int blood_;
-    int ramain_spell_;
+    int remain_spell_;
     int max_spell;
+    void spell_fresh();
     QVector<BaseCard*> hand_cards;
     Hero()
     {
         blood_ = 30;
-        ramain_spell_ = 1;
+        remain_spell_ = 1;
         max_spell = 1;
     }
 };
