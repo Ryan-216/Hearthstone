@@ -8,38 +8,65 @@ void BattleScene::battle()
 	draw_cards(enemy_, 5);	
 	paint_text(hero_);
 	paint_text(enemy_);
+
 	timer_ = new QTimer();
-	timer_->start(20);
-	
+	timer_->start(20);	
 	connect(timer_, &QTimer::timeout, [this]() {
 		this->fake_mouse();
-
-		//if(this->mouseGrabberItem() != nullptr)qDebug() << mouse_pos;
 		if (mouse_ == -1)
 		{
 			manage_attack();
-			paint_all();
+			paint_all();			
 		}
-
 		});
 	
 	connect(this->btn_end_of_turn, &QPushButton::clicked,this, &BattleScene::turn_change);
 	
-	
-	//connect(this, &BattleScene::draw, this, &BattleScene::paint_cards);
-	//我方回合
-	
-	//法力值+1
-
-	//操作
 }
+
 void BattleScene::manage_attack()
 {
-	//if (turn)
+	BaseCard* attacker = new BaseCard;
+	if (turn)
 	{
-		BaseCard card1;
-		qDebug()<<this->items()[0]->type();
-		qDebug()<<this->items()[1]->type();
+		for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
+		{
+			if ((*it)->status_ == 1 && (*it)->isDragging)	attacker = (*it);
+		}
+		for (auto it = enemy_->hand_cards.begin(); it < enemy_->hand_cards.end(); it++)
+		{
+			if ((*it)->status_ == 1)
+			{
+				if (mouse_pos.x() - (*it)->pos().x() <= (*it)->widght_ && mouse_pos.x() - (*it)->pos().x() >= 0 &&
+					mouse_pos.y() - (*it)->pos().y() <= (*it)->height_ && mouse_pos.y() - (*it)->pos().y() >= 0)
+				{
+					qDebug() << "attack";
+					attacker->Attack(*it);
+					attacker->Death();
+					(*it)->Death();
+				}								
+			};
+		}	
+	}
+	else
+	{
+		for (auto it = enemy_->hand_cards.begin(); it < enemy_->hand_cards.end(); it++)
+		{
+			if ((*it)->status_ == 1 && (*it)->isDragging)	attacker = (*it);
+		}
+		for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
+		{
+			if ((*it)->status_ == 1)
+			{
+				if (mouse_pos.x() - (*it)->pos().x() <= (*it)->widght_ && mouse_pos.x() - (*it)->pos().x() >= 0 &&
+					mouse_pos.y() - (*it)->pos().y() <= (*it)->height_ && mouse_pos.y() - (*it)->pos().y() >= 0)
+				{
+					attacker->Attack(*it);
+					attacker->Death();
+					(*it)->Death();
+				}
+			};
+		}
 	}
 }
 
@@ -57,14 +84,13 @@ void  BattleScene::fake_mouse()
 	else mouse_ = 0;
 }
 
-
 void BattleScene::turn_change()
 {
 	//true 我方 false 敌方
 	turn = !turn;
 	for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
 	{
-		if ((*it)->status_ == 0) (*it)->allow_click_ = turn;
+		if ((*it)->status_ == 0) (*it)->allow_click_ = turn;//设置为是否移动
 	}
 	btn_end_of_turn->setText(turn ? "Your Turn" : "Enemy's Turn");
 	draw_cards(turn ? hero_ : enemy_, 1);
@@ -111,11 +137,13 @@ void BattleScene::paint_text(Hero* hero)
 
 void  BattleScene::paint_all()
 {
-	paint_cards(hero_);
 	paint_cards(enemy_);
+	paint_cards(hero_);	
 }
+
 void BattleScene::paint_cards(Hero* hero)
 {
+	
 	//0手牌，1战斗，2死亡
 	int cards_num[3] = { 0 };
 	int mid_width = width_ / 2;
@@ -137,6 +165,20 @@ void BattleScene::paint_cards(Hero* hero)
 			{
 				card->move(mid_width + (card->widght_ + 10) * (j - cards_num[1] * 0.5), (hero == hero_ ? mid_height : mid_height - card->height_));
 				j++;
+			}
+			if (card->status_ == 2)
+			{
+				for (auto it = hero->hand_cards.begin(); it < hero->hand_cards.end(); it++)
+				{
+					if (*it == card)
+					{
+						hero->hand_cards.erase(it);
+						card->status_ = 1;
+						cards_.push_back(*it);
+						//clear();
+						//this->removeItem((*it)->graphicsProxyWidget())
+					}					
+				}
 			}
 		}
 		
