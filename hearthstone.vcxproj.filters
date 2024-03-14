@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Header Files\cardclass">
+      <UniqueIdentifier>{69821fdd-5e30-47d4-af77-55391fb0d9ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cardclass">
+      <UniqueIdentifier>{862f181b-defc-4fb2-ac13-059148ea5f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\container">
+      <UniqueIdentifier>{b182a19b-2b5c-465e-9d16-abb4b870d477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\container">
+      <UniqueIdentifier>{bab6c86a-25a1-489e-bb8b-5caa8cae818a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\help">
+      <UniqueIdentifier>{22162c1e-03f4-4a4e-938c-c9ba60c2c75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\help">
+      <UniqueIdentifier>{ecc9e6da-b081-40a0-be19-df6650936069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\other">
+      <UniqueIdentifier>{a607d4b2-2a6e-4a46-9941-c6671ee3eeea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\other">
+      <UniqueIdentifier>{64ee45a9-cd61-4f65-95a6-6025d67233c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\object">
+      <UniqueIdentifier>{364a7c37-4994-4909-ab8e-b920c6165a31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object">
+      <UniqueIdentifier>{b229d464-eaf6-45ae-9ddc-1a06dcdcc0e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lib">
+      <UniqueIdentifier>{a69fdb6d-2fa3-4d03-adb3-a32e06e4d81f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib">
+      <UniqueIdentifier>{a72f99be-814f-4ede-9e76-eab1c9e95917}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="hearthstone.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtUic Include="hearthstone.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="widget.cpp">
+      <Filter>Source Files\help</Filter>
+    </ClCompile>
+    <ClCompile Include="label.cpp">
+      <Filter>Source Files\help</Filter>
+    </ClCompile>
+    <ClCompile Include="minilabel.cpp">
+      <Filter>Source Files\help</Filter>
+    </ClCompile>
+    <ClCompile Include="hearthstone.cpp">
+      <Filter>Source Files\other</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\other</Filter>
+    </ClCompile>
+    <ClCompile Include="card.cpp">
+      <Filter>Source Files\cardclass</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="hero.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="fighter.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="fightspace.cpp">
+      <Filter>Source Files\container</Filter>
+    </ClCompile>
+    <ClCompile Include="handcard.cpp">
+      <Filter>Source Files\container</Filter>
+    </ClCompile>
+    <ClCompile Include="ability.cpp">
+      <Filter>Source Files\cardclass</Filter>
+    </ClCompile>
+    <ClCompile Include="power.cpp">
+      <Filter>Source Files\other</Filter>
+    </ClCompile>
+    <ClCompile Include="cardlib.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="widget.h">
+      <Filter>Header Files\help</Filter>
+    </ClInclude>
+    <ClInclude Include="label.h">
+      <Filter>Header Files\help</Filter>
+    </ClInclude>
+    <ClInclude Include="minilabel.h">
+      <Filter>Header Files\help</Filter>
+    </ClInclude>
+    <ClInclude Include="card.h">
+      <Filter>Header Files\cardclass</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="fighter.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="hero.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="fightspace.h">
+      <Filter>Header Files\container</Filter>
+    </ClInclude>
+    <ClInclude Include="handcard.h">
+      <Filter>Header Files\container</Filter>
+    </ClInclude>
+    <ClInclude Include="ability.h">
+      <Filter>Header Files\cardclass</Filter>
+    </ClInclude>
+    <ClInclude Include="power.h">
+      <Filter>Header Files\other</Filter>
+    </ClInclude>
+    <ClInclude Include="cardlib.h">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="hearthstone.h">
+      <Filter>Header Files\other</Filter>
+    </QtMoc>
+  </ItemGroup>
+</Project>
