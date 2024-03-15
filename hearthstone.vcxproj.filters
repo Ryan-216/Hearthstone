@@ -27,9 +27,6 @@
     <Filter Include="Source Files\cardclass">
       <UniqueIdentifier>{862f181b-defc-4fb2-ac13-059148ea5f16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\container">
-      <UniqueIdentifier>{b182a19b-2b5c-465e-9d16-abb4b870d477}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\container">
       <UniqueIdentifier>{bab6c86a-25a1-489e-bb8b-5caa8cae818a}</UniqueIdentifier>
     </Filter>
@@ -56,6 +53,9 @@
     </Filter>
     <Filter Include="Source Files\lib">
       <UniqueIdentifier>{a72f99be-814f-4ede-9e76-eab1c9e95917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\container">
+      <UniqueIdentifier>{b182a19b-2b5c-465e-9d16-abb4b870d477}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

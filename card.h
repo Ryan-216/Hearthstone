@@ -22,7 +22,7 @@ class card :
 //----------------------------------------构造函数-------------------------------------------------------------
 public:
     card(int _cost, void (*_dirfp)(QPoint target),std::string _name, QPoint p, QWidget* parent);//初始化指向性法术
-    card(int _cost, void (*nondirfp)(),std::string _name, QPoint p, QWidget* parent);//初始化无指向法术
+    card( int _cost, std::string _name, void (*nondirfp)(), QPoint p, QWidget* parent);//初始化无指向法术
     card(int _cost, int _atk,int _hp,std::string _name, QPoint p, QWidget* parent);//初始化随从牌
     
 //----------------------------------------构造函数-------------------------------------------------------------
@@ -55,6 +55,12 @@ public:
     int W;
     int H;
     QPoint pos;//在父对象（handcard容器）坐标系中的位置 
+
+    QPoint m_point;
+    QPoint m_pos;
+    QPoint startPoint;
+    QPoint endPoint;
+    bool isDrawing;
 //----------------------------------------数据成员-------------------------------------------------------------
 
 
@@ -85,6 +91,7 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
+    void paintEvent(QPaintEvent* event);
 
     //----------------------------------------鼠标交互-------------------------------------------------------------
 
