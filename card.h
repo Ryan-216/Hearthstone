@@ -1,5 +1,6 @@
 #pragma once
 #include"QLabel"
+#include"string.h"
 class minilabel;
 
 //类简介
@@ -23,7 +24,7 @@ class card :
 public:
     card(int _cost, void (*_dirfp)(QPoint target),std::string _name, QWidget* parent);//初始化指向性法术
     card(int _cost, void (*nondirfp)(),std::string _name, QWidget* parent);//初始化无指向法术
-    card(int _cost, int _atk,int _hp,std::string _name, QWidget* parent);//初始化随从牌
+    card(int _cost, int _atk,int _hp,std::string _name, QWidget* parent);//初始化随从牌   
 //----------------------------------------构造函数-------------------------------------------------------------
 
 
@@ -93,6 +94,10 @@ signals:
     //注意 需要在release中先大致判断释放位置释放有效 如果调用use信号 默认已是有效释放
     //关于在哪里判断以及如何判断出牌是否有效还需要斟酌
     //---------------------------------------信号与槽-------------------------------------------------------------
+
+public:
+    std::string id = "00000";//卡牌唯一标识，种类+效果类型+排序
+    bool operator==(card* c);//重载 == 运算符
 };
 
 

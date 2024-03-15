@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="hearthstone">
+    <qresource prefix="/">
+        <file>assert/bg_login.png</file>
+        <file>assert/bg_battle.png</file>
     </qresource>
 </RCC>

@@ -5,3 +5,9 @@ void card::init()
 {
 	//初始化常规项 如尺寸
 }
+
+bool card::operator==(card* c)
+{
+	if (this->id == c->id) return true;
+	else return false;
+}
