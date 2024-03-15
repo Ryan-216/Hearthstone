@@ -1,7 +1,6 @@
 #pragma once
 
 #include <QtWidgets/QWidget>
-#include "ui_hearthstone.h"
 #include<QPushButton>
 class fighterspace;
 class handcard;
@@ -14,13 +13,10 @@ class power;
 
 class hearthstone : public QWidget
 {
-    Q_OBJECT
-
 public:
     hearthstone(QWidget *parent = nullptr);
     ~hearthstone();
 private:
-    Ui::hearthstoneClass ui;
     fighterspace* space;
     handcard* hand;
     minionlib* minion_lib;
