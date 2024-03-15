@@ -6,12 +6,12 @@ class BattleScene :
 {
 public:
     hearthstone hearthstone;
+    QLabel* bg = new QLabel(&hearthstone);
     BattleScene()
     {
         this->setSceneRect(QRect(0, 0, width_, height_));
-        bg_.setFixedSize(width_, height_);
-        bg_.setPixmap(QPixmap(":/assert/bg_battle.png"));
-        this->addWidget(&bg_);
+        bg->setFixedSize(width_, height_);
+        bg->setPixmap(QPixmap(":/assert/bg_battle.png"));
         this->addWidget(&hearthstone);
     }
 };
