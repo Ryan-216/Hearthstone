@@ -13,5 +13,8 @@ public:
     void increase(int val);//获得val个水晶 增加的是上限
     void consume(int val);//消耗val个水晶
     void refresh();//每回合开始充满水晶
+    
+    //法力值是否足够使用卡牌？
+
 };
 
