@@ -122,4 +122,8 @@ void card::mouseReleaseEvent(QMouseEvent* event)
 	
 }
 
-
+bool card::operator==(card* c)
+{
+	if (this->id == c->id) return true;
+	else return false;
+}

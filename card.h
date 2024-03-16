@@ -1,5 +1,6 @@
 #pragma once
 #include"QLabel"
+#include"string.h"
 class minilabel;
 
 //类简介
@@ -104,6 +105,10 @@ signals:
     void postohandcard(QPoint p, bool start) {};//将鼠标在handcard中的坐标传给handcard
 
     //---------------------------------------信号与槽-------------------------------------------------------------
+
+public:
+    std::string id = "00000";//卡牌唯一标识，种类+效果类型+排序
+    bool operator==(card* c);//重载 == 运算符
 };
 
 

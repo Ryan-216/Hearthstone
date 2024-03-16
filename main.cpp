@@ -1,10 +1,10 @@
-#include "hearthstone.h"
+#include "MainWidget.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    hearthstone w;
-    w.show();
+    MainWidget w;
+    w.start();
     return a.exec();
 }

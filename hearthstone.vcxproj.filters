@@ -109,6 +109,21 @@
     <ClCompile Include="cardlib.cpp">
       <Filter>Source Files\lib</Filter>
     </ClCompile>
+    <ClCompile Include="MainWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="widget.h">
@@ -147,10 +162,25 @@
     <ClInclude Include="cardlib.h">
       <Filter>Header Files\lib</Filter>
     </ClInclude>
+    <ClInclude Include="hearthstone.h">
+      <Filter>Header Files\other</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="hearthstone.h">
-      <Filter>Header Files\other</Filter>
+    <QtMoc Include="MainWidget.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

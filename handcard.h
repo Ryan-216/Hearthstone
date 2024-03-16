@@ -1,5 +1,6 @@
 #pragma once
 #include <QWidget>
+#include <algorithm>
 class card;
 class hero;
 class ability;
@@ -12,9 +13,9 @@ class handcard :
 public:
     handcard(QWidget* parent);
 private:
-    std::vector<card*>mycard;//手牌容器 至多9张
-    //一开始初始化 vector大小就初始化为9 0-5有牌 6-8 nullptr
-    int num;//当前手牌数量
+    std::vector<card*>mycard;//手牌容器 至多9张√
+    //一开始初始化 vector大小就初始化为9 0-5有牌 6-8 nullptr√
+    int num = 0;//当前手牌数量√
 public:
     void add(card* c);//向容器中加一张牌
     void remove(card* c);//单纯从容器中删除一张牌
