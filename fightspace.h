@@ -31,12 +31,12 @@ public:
     int h;
     QPoint pos;
 public slots:
-    void on_handcard_useminion(card* c, QPoint pos);
-    void on_handcard_usedirspell(card* c, QPoint pos);
-    void on_handcard_usenodirspell(card* c);
-    void on_handcard_useability(ability* a, QPoint* pos);
-    void on_fighter_attack(fighter* attacker, QPoint pos);//根据pos计算攻击的是谁 也许是英雄 也许是无效攻击
-    void on_fighter_die(fighter*f);//处理死亡信号
+    void on_handcard_useminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
+    void on_handcard_usedirspell(card* c, QPoint pos);//当手牌发出使用指向法术的信号时 战场发生相应变化 
+    void on_handcard_usenodirspell(card* c);//当手牌发出使用非指向法术的信号时 战场发生相应变化 
+    void on_handcard_useability(ability* a, QPoint* pos);//当英雄技能使用时 战场发生相应变化
+    void on_fighter_attack(fighter* attacker, QPoint pos);//处理攻击的信号 attacker攻击pos位置的随从 更新血量 
+    void on_fighter_die(fighter*f);//处理f随从发来的死亡信号
 
 public:
     //坐标计算函数 根据坐标计算出是哪个目标 难点
