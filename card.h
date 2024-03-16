@@ -15,11 +15,13 @@ class minilabel;
 class card :
     public QLabel
 {
+public:
     enum CARDTYPE {
         MINION,//随从牌
         DIRSPELL,//指向性法术牌
         NONDIRSPELL//无指向性法术牌
-    };
+    }card_type;
+    
 //----------------------------------------构造函数-------------------------------------------------------------
 public:
     card(int _cost, void (*_dirfp)(QPoint target),std::string _name, QPoint p, QWidget* parent);//初始化指向性法术
@@ -28,7 +30,7 @@ public:
     
 //----------------------------------------构造函数-------------------------------------------------------------
 
-
+    
 
 //----------------------------------------数据成员-------------------------------------------------------------
 protected:
@@ -53,8 +55,8 @@ public:
     void (*nondirfp)();//存放法术效果的函数指针 由于无指向性 故无参数
 public:
     //常规尺寸
-    int w;
-    int h;
+    static int w;
+    static int h;
     //放大展示时尺寸
     int W;
     int H;
