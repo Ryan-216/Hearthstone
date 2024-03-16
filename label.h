@@ -5,6 +5,7 @@ class label :
     public QLabel
 {
 public:
+    label() {};
     label(QWidget* parent);
 protected:
     void enterEvent(QEnterEvent* event);//鼠标进入加边框

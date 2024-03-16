@@ -5,13 +5,15 @@ class object :
     public label
 {
 public:
-    object(int _x,int _y,int _hp,QWidget* parent);
-    object(int _x,int _y, int _hp, std::string _name,QWidget* parent);
+    object() {};///////
+   // object(int _x,int _y,int _hp,QWidget* parent);
+    object(int _x,int _y, int _hp, QString _name,QWidget* parent);
 
 protected:
     int hp;
     minilabel* hplabel;
-    std::string name;
+    //std::string name;
+    QString name;
     int w;
     int h;
     QPoint pos;
