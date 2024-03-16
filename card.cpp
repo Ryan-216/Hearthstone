@@ -81,10 +81,8 @@ void card::leaveEvent(QEvent* event)
 
 void card::mousePressEvent(QMouseEvent* event)
 {
-	if (type == DIRSPELL) {
-		startPoint = event->pos();
-		endPoint = startPoint;
-		isDrawing = true;
+	if (type != DIRSPELL) {
+		emit postohandcard(mapToParent(event->pos()), true);
 	}
 	else {
 		//记录鼠标的世界坐标.
@@ -99,11 +97,8 @@ void card::mousePressEvent(QMouseEvent* event)
 void card::mouseMoveEvent(QMouseEvent* event)
 {
 
-	if (type == DIRSPELL) {
-		if (isDrawing) {
-			endPoint = event->pos();
-			update();
-		}
+	if (type != DIRSPELL) {
+		emit postohandcard(mapToParent(event->pos()), false);
 	}
 	else {
 		//移动中的鼠标位置相对于初始位置的相对位置.
@@ -116,10 +111,8 @@ void card::mouseMoveEvent(QMouseEvent* event)
 
 void card::mouseReleaseEvent(QMouseEvent* event)
 {
-	if (type == DIRSPELL) {
-		endPoint = startPoint;
-		isDrawing = false;
-		update();
+	if (type != DIRSPELL) {
+		emit postohandcard(QPoint(-1,-1), true);
 	}
 	else {
 
@@ -129,9 +122,4 @@ void card::mouseReleaseEvent(QMouseEvent* event)
 	
 }
 
-void card::paintEvent(QPaintEvent* event)
-{
-	this->show();
-	QPainter painter(this);
-	painter.drawLine(startPoint, endPoint);
-}
+

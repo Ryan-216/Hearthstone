@@ -6,6 +6,9 @@ class ability;
 class handcard :
     public QWidget
 {
+
+    //handcard内部自己维护一个法力水晶（逻辑）
+
 public:
     handcard(QWidget* parent);
 private:
@@ -29,12 +32,18 @@ public slots:
 
 public  slots:
     void on_cardlib_sendcard(card* c);//接收卡牌 加入手牌
+    void on_card_postohandcard(QPoint p, bool strat);//接收手牌发来的坐标
+   
+
 
 signals:
+    void costpower(int val);//向power发送信号 消耗量val个水晶
     void draw(int num);
     void useminion(card* c, QPoint pos);
     void usedirspell(card* c, QPoint pos);
     void usenodirspell(card* c);
     void useability(ability* a, QPoint* pos);
+    void postohearthstone(QPoint p, bool strat);//将在主窗口坐标系中的坐标传给主窗口
+
 };
 

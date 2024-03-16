@@ -42,6 +42,9 @@ protected:
     int hp;//生命值
     minilabel* hplabel;//卡牌右下角角显示生命的小标签
     CARDTYPE type;
+
+
+
 public:
     //仅指向性法术拥有属性
     void (*dirfp)(QPoint target);//代表法术效果的指针 带有一个参数 代表法术指向的目标 由fightspace进行坐标转换
@@ -58,9 +61,7 @@ public:
 
     QPoint m_point;
     QPoint m_pos;
-    QPoint startPoint;
-    QPoint endPoint;
-    bool isDrawing;
+    
 //----------------------------------------数据成员-------------------------------------------------------------
 
 
@@ -91,7 +92,7 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
-    void paintEvent(QPaintEvent* event);
+    //void paintEvent(QPaintEvent* event);
 
     //----------------------------------------鼠标交互-------------------------------------------------------------
 
@@ -99,8 +100,9 @@ protected:
 signals:
     //向handcard发送 表示本牌将被打出到pos位置 第一个参数传this 第二个参数传打出位置 对于非指向性法术 传0，0作为标识
     void use(card* c, QPoint pos);
-    //注意 需要在release中先大致判断释放位置释放有效 如果调用use信号 默认已是有效释放
-    //关于在哪里判断以及如何判断出牌是否有效还需要斟酌
+signals:
+    void postohandcard(QPoint p, bool start) {};//将鼠标在handcard中的坐标传给handcard
+
     //---------------------------------------信号与槽-------------------------------------------------------------
 };
 
