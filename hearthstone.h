@@ -27,4 +27,13 @@ private:
     QPushButton* optionbutton;
     int w;
     int h;
+public:
+    QPoint startPoint;
+    QPoint endPoint;
+    bool isDrawing;
+public slots:
+    void on_card_postohearthstone(QPoint p,bool start);//接收到坐标
+protected:
+    void paintEvent(QPaintEvent* event);
+    
 };
