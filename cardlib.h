@@ -18,15 +18,15 @@ public:
 		{
 			if (i < 20)
 			{
-				card* c = new card;
-				minionlib.push_back(c);
-				lib.push_back(c);
+				//card* c = new card;
+				//minionlib.push_back(c);
+				//lib.push_back(c);
 			}
 			else
 			{
-				card* c = new card;
-				spelllib.push_back(c);
-				lib.push_back(c);
+				//card* c = new card;
+				//spelllib.push_back(c);
+				//lib.push_back(c);
 			}
 
 		}
@@ -42,7 +42,7 @@ public:
 
 
 signals:
-	void sendcard(card*c);//给handcard发送卡牌 完成抽卡的操作
+	void sendcard(card* c) {};//给handcard发送卡牌 完成抽卡的操作
 public slots:
 	void on_handcard_draw(int num);//接收到手牌的抽牌信号后准备卡牌 发还给handcard 调用sendcard信号
 

@@ -45,18 +45,6 @@ void minilabel::init() {
 	this->setFont(QFont("Microsoft YaHei", 18, QFont::Bold));
 }
 
-minilabel::minilabel(QWidget* parent)
-{
-}
 
-minilabel::minilabel(int _val, QWidget* parent)
-{
-}
 
-minilabel::minilabel(int _val, int x, int y, QWidget* parent)
-{
-}
 
-void minilabel::init()
-{
-}

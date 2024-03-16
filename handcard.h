@@ -39,12 +39,12 @@ public  slots:
 
 signals:
     void costpower(int val);//向power发送信号 消耗量val个水晶
-    void draw(int num);
-    void useminion(card* c, QPoint pos);
-    void usedirspell(card* c, QPoint pos);
-    void usenodirspell(card* c);
-    void useability(ability* a, QPoint* pos);
-    void postohearthstone(QPoint p, bool strat);//将在主窗口坐标系中的坐标传给主窗口
+    void draw(int num) {};
+    void useminion(card* c, QPoint* pos) {};
+    void usedirspell(card* c, QPoint* pos) {};
+    void usenodirspell(card* c) {};
+    void useability(ability* a, QPoint* pos) {};
+    void postohearthstone(QPoint p, bool strat) {};//将在主窗口坐标系中的坐标传给主窗口
 
 };
 

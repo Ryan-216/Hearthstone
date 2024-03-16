@@ -127,3 +127,6 @@ bool card::operator==(card* c)
 	if (this->id == c->id) return true;
 	else return false;
 }
+
+int card::w = 125;
+int card::h = 150;

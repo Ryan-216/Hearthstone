@@ -15,9 +15,7 @@ void handcard::on_card_postohandcard(QPoint p, bool start)
 
 }
 
-void handcard::postohearthstone(QPoint p, bool strat)
-{
-}
+
 
 
 handcard::handcard(QWidget* parent)
@@ -65,17 +63,17 @@ void handcard::on_card_use(card* c, QPoint* pos)
 	{
 	case card::CARDTYPE::MINION:
 	{
-		emit use_minion(c, pos);
+		emit useminion(c, pos);
 		break;
 	}
 	case card::CARDTYPE::DIRSPELL:
 	{
-		emit use_dirspell(c, pos);
+		emit usedirspell(c, pos);
 		break;
 	}
 	case card::CARDTYPE::NONDIRSPELL:
 	{
-		emit use_nodirspell(c);
+		emit usenodirspell(c);
 		break;
 	}
 	default:
