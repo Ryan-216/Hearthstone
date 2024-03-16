@@ -1,5 +1,5 @@
 #pragma once
-class card;
+
 #include<vector>
 #include"label.h"
 //类简介
@@ -7,19 +7,38 @@ class card;
 //分为专门存储随从牌的minionlib 专门存储法术牌的spelllib 和总牌库lib 
 //功能是存储卡牌和为手牌提供抽牌服务（信号与槽）
 
+class card;
 class cardlib:
 	public label
 {
 public:
-	cardlib();
+	cardlib() 
+	{
+		for (int i = 0; i < 40; i++)
+		{
+			if (i < 20)
+			{
+				card* c = new card;
+				minionlib.push_back(c);
+				lib.push_back(c);
+			}
+			else
+			{
+				card* c = new card;
+				spelllib.push_back(c);
+				lib.push_back(c);
+			}
+
+		}
+	};
 private:
 	std::vector<card*>minionlib;//随从牌库
 	std::vector<card*>spelllib;//法术牌库
 	std::vector<card*>lib;//总牌库=随从牌库+法术牌库
 public:
-	card* randoncard();//随机获取卡牌
-	card* randonminion();//随机获取随从
-	card* randonspell();//随机获取法术
+	card* randomcard();//随机获取卡牌
+	card* randomminion();//随机获取随从
+	card* randomspell();//随机获取法术
 	card* getcard(int x);//按下标获取卡牌
 	card* getminion(int x);//按下标获取随从
 	card* getcspell(int x);//按下标获取法术
