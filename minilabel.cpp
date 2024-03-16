@@ -30,14 +30,14 @@ minilabel::minilabel(int _val, int x, int y, QWidget* parent) {
 	this->init();
 	this->val = _val;
 	this->setParent(parent);
-	this->move(0,100);//我也不知道一张卡多大，只能大致估算位置
+	this->move(0,100);//
 }
 //右下生命标签初始化
 minilabel::minilabel(int _val,QWidget* parent) {
 	this->init();
 	this->val = _val;
 	this->setParent(parent);
-	this->move(0, 50);//咕
+	this->move(75, 100);
 }
 //通用初始化
 void minilabel::init() {

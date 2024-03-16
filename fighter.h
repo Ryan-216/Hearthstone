@@ -6,8 +6,8 @@ class fighter :
 {
 public:
 
-    fighter(int _x, int _y,int _cost,int _atk, int _hp, std::string _name, QWidget* parent);
-    fighter(int _x, int _y, card* c, QWidget* parent);
+    fighter(int _x, int _y,int _cost,int _atk, int _hp, QString _name, QWidget* parent);
+    //fighter(int _x, int _y, card* c, QWidget* parent);
 private:
     int cost;
     int atk;
@@ -20,7 +20,6 @@ private:
 public:
     void wake();//合会开始时 如果沉睡 则唤醒
     bool dead();
-    void hit(QPoint p);
     int getatk();//获取攻击力
     //获取当前血量
 protected:
@@ -32,7 +31,7 @@ protected:
    
 signals:
     //攻击需要请求上层容器服务  connect的是上层的fightspace容器
-    void attack(fighter* attacker, QPoint pos);
+    void attack(fighter* attacker, QPoint pos) {};
     //向上层发送死亡信号 删除自己
     void die(fighter* me);
 };

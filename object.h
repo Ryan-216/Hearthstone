@@ -6,8 +6,8 @@ class object :
 {
 public:
     object() {};///////
-    object(int _x,int _y,int _hp,QWidget* parent);
-    object(int _x,int _y, int _hp, std::string _name,QWidget* parent);
+   // object(int _x,int _y,int _hp,QWidget* parent);
+    object(int _x,int _y, int _hp, QString _name,QWidget* parent);
 
 protected:
     int hp;
