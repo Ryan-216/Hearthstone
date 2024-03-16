@@ -19,10 +19,6 @@ void MainWidget::start()
     show();
     game_view.setScene(login_scene);
     connect(login_scene->btn_login, &QPushButton::clicked, this, &MainWidget::battle);
-    qDebug() << this->width_;
-    qDebug() <<game_view.width();
-    qDebug() <<login_scene->width_;
-    qDebug() <<login_scene->bg_.width();
 }
 
 void MainWidget::battle()
