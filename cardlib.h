@@ -39,9 +39,7 @@ public:
 	card* randomcard();//随机获取卡牌
 	card* randomminion();//随机获取随从
 	card* randomspell();//随机获取法术
-	card* getcard(int x);//按下标获取卡牌
-	card* getminion(int x);//按下标获取随从
-	card* getcspell(int x);//按下标获取法术
+
 
 signals:
 	void sendcard(card*c);//给handcard发送卡牌 完成抽卡的操作
