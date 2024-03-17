@@ -119,9 +119,9 @@
     <ClInclude Include="ability.h" />
     <ClInclude Include="card.h" />
     <ClInclude Include="cardlib.h" />
-    <ClInclude Include="fighter.h" />
-    <ClInclude Include="fightspace.h" />
-    <ClInclude Include="handcard.h" />
+    <QtMoc Include="fighter.h" />
+    <QtMoc Include="fightspace.h" />
+    <QtMoc Include="handcard.h" />
     <ClInclude Include="hero.h" />
     <ClInclude Include="label.h" />
     <QtMoc Include="MainWidget.h" />

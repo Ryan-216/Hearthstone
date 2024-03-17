@@ -4,10 +4,11 @@ class card;
 class fighter :
     public object
 {
+    Q_OBJECT
 public:
 
     fighter(int _x, int _y,int _cost,int _atk, int _hp, QString _name, QWidget* parent);
-    //fighter(int _x, int _y, card* c, QWidget* parent);
+    fighter(int _x, int _y, card* c, QWidget* parent);
 private:
     int cost;
     int atk;
@@ -31,8 +32,8 @@ protected:
    
 signals:
     //攻击需要请求上层容器服务  connect的是上层的fightspace容器
-    void attack(fighter* attacker, QPoint pos) {};
+    void attack(fighter* attacker, QPoint pos);
     //向上层发送死亡信号 删除自己
-    void die(fighter* me);
+    //void die(fighter* me);
 };
 

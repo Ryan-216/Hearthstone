@@ -32,7 +32,7 @@ public:
     QPoint endPoint;
     bool isDrawing;
 public slots:
-    void on_card_postohearthstone(QPoint p,bool start);//接收到坐标
+    void oncardpostohearthstone(QPoint p,bool start);//接收到坐标
 protected:
     void paintEvent(QPaintEvent* event);
     

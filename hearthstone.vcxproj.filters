@@ -141,17 +141,8 @@
     <ClInclude Include="object.h">
       <Filter>Header Files\object</Filter>
     </ClInclude>
-    <ClInclude Include="fighter.h">
-      <Filter>Header Files\object</Filter>
-    </ClInclude>
     <ClInclude Include="hero.h">
       <Filter>Header Files\object</Filter>
-    </ClInclude>
-    <ClInclude Include="fightspace.h">
-      <Filter>Header Files\container</Filter>
-    </ClInclude>
-    <ClInclude Include="handcard.h">
-      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="ability.h">
       <Filter>Header Files\cardclass</Filter>
@@ -181,6 +172,15 @@
   <ItemGroup>
     <QtMoc Include="MainWidget.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="fightspace.h">
+      <Filter>Header Files\container</Filter>
+    </QtMoc>
+    <QtMoc Include="fighter.h">
+      <Filter>Header Files\object</Filter>
+    </QtMoc>
+    <QtMoc Include="handcard.h">
+      <Filter>Header Files\container</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>
