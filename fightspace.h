@@ -8,6 +8,7 @@ class card;
 class fightspace :
     public QWidget
 {
+    Q_OBJECT
 public:
     fightspace(QWidget* parent);
 private:
@@ -21,9 +22,9 @@ private:
     ability* myability;
 public:
     void enemyadd(fighter*f);
-    void enemyremove(fighter* f);
+    void enemyremove(fighter* f) ;
     void myadd(fighter* f);
-    void myremove(fighter* f);
+    void myremove(fighter* f) ;
     void enemyrefresh();
     void myrefresh();
     fighter* searchfighter(QPoint *p);//根据战场p找fighter
@@ -33,12 +34,11 @@ public:
     int h;
     QPoint pos;
 public slots:
-    bool on_handcard_useminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
-    void on_handcard_usedirspell(card* c, QPoint pos);//当手牌发出使用指向法术的信号时 战场发生相应变化 
-    void on_handcard_usenodirspell(card* c);//当手牌发出使用非指向法术的信号时 战场发生相应变化 
-    void on_handcard_useability(ability* a, QPoint* pos);//当英雄技能使用时 战场发生相应变化
-    void on_fighter_attack(fighter* attacker, QPoint pos);//处理攻击的信号 attacker攻击pos位置的随从 更新血量 
-    void on_fighter_die(fighter*f);//处理f随从发来的死亡信号
+    void onhandcarduseminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
+    void onhandcardusedirspell(card* c, QPoint pos);//当手牌发出使用指向法术的信号时 战场发生相应变化 
+    void onhandcardusenodirspell(card* c);//当手牌发出使用非指向法术的信号时 战场发生相应变化 
+    void onhandcarduseability(ability* a, QPoint* pos);//当英雄技能使用时 战场发生相应变化
+    void onfighterattack(fighter* attacker, QPoint pos);//处理攻击的信号 attacker攻击pos位置的随从 更新血量 
 
 public:
     //坐标计算函数 根据坐标计算出是哪个目标 难点

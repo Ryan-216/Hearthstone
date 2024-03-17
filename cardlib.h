@@ -44,7 +44,7 @@ public:
 signals:
 	void sendcard(card* c) {};//给handcard发送卡牌 完成抽卡的操作
 public slots:
-	void on_handcard_draw(int num);//接收到手牌的抽牌信号后准备卡牌 发还给handcard 调用sendcard信号
+	void onhandcarddraw(int num);//接收到手牌的抽牌信号后准备卡牌 发还给handcard 调用sendcard信号
 
 
 };

@@ -16,7 +16,7 @@ protected:
     QString name;
     int w;
     int h;
-    QPoint pos;
+   //QPoint pos;
 public:
     void losehp(int val);
     void init();//通用初始化 大小 字体 图片自适应等

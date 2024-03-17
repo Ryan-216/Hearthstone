@@ -130,3 +130,6 @@ bool card::operator==(card* c)
 
 int card::w = 125;
 int card::h = 150;
+QString card::getname() {
+	return QString::fromStdString(this->name);
+}

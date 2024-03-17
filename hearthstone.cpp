@@ -16,7 +16,7 @@ hearthstone::hearthstone(QWidget *parent)
 hearthstone::~hearthstone()
 {}
 
-void hearthstone::on_card_postohearthstone(QPoint p, bool start) {
+void hearthstone::oncardpostohearthstone(QPoint p, bool start) {
     if (start) {//传入的是开始坐标
         startPoint = p;
         endPoint = startPoint;

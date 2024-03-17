@@ -1,31 +1,85 @@
 #include "fightspace.h"
 #include "card.h"
-#include "fighter.h"
+#include"fighter.h"
+#include"ability.h"
 
-//Õ½³¡ÖÐÏß
+void fightspace::onhandcardusedirspell(card* c, QPoint pos) {//ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½Ê± Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ä»¯ 
+	c->dirfp(pos);//ï¿½Í·Å·ï¿½ï¿½ï¿½
+	//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ð½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+	for (auto it = myspace.begin(); it < myspace.end(); it++) {
+		if ((*it)->dead()) myremove(*it);//ï¿½Æ³ï¿½
+	}
+	for (auto it = enemyspace.begin(); it < enemyspace.end(); it++) {
+		if ((*it)->dead()) enemyremove(*it);//ï¿½Æ³ï¿½
+	}
+}
+
+void fightspace::onhandcardusenodirspell(card* c) {//ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ê¹ï¿½Ã·ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½Ê± Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ä»¯ 
+	c->nondirfp();//ï¿½Í·Å·ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦Ð§ï¿½ï¿½
+	//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ð½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+	for (auto it = myspace.begin(); it < myspace.end();it++ ) {
+		if ((*it)->dead()) myremove(*it);//ï¿½Æ³ï¿½
+	}
+	for (auto it = enemyspace.begin(); it < enemyspace.end(); it++) {
+		if ((*it)->dead()) enemyremove(*it);//ï¿½Æ³ï¿½
+	}
+}
+
+void fightspace::onhandcarduseability(ability* a, QPoint* pos) {//ï¿½ï¿½Ó¢ï¿½Û¼ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Ê± Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ä»¯
+	a->dirfp(*pos);
+	//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ð½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+	for (auto it = myspace.begin(); it < myspace.end(); it++) {
+		if ((*it)->dead()) myremove(*it);//ï¿½Æ³ï¿½
+	}
+	for (auto it = enemyspace.begin(); it < enemyspace.end(); it++) {
+		if ((*it)->dead()) enemyremove(*it);//ï¿½Æ³ï¿½
+	}
+}
+
+void fightspace::onfighterattack(fighter* attacker, QPoint pos) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½ attackerï¿½ï¿½ï¿½ï¿½posÎ»ï¿½Ãµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ 
+	for (auto it = enemyspace.begin(); it < enemyspace.end(); it++) {
+		if (((*it)->mapToParent((*it)->pos()).x() + 125) >= pos.x() >= (*it)->mapToParent((*it)->pos()).x() && ((*it)->mapToParent((*it)->pos()).y() + 150) >= pos.y() >= (*it)->mapToParent((*it)->pos()).y()) {
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¹¥ï¿½ï¿½ï¿½ï¿½Ð§//
+			(*it)->losehp(attacker->getatk());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ÖµÎªattackerï¿½Ä¹ï¿½ï¿½ï¿½
+			attacker->losehp((*it)->getatk());//ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÓµÄ¹ï¿½ï¿½ï¿½
+		}
+	}
+
+	//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ð½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+	for (auto it = myspace.begin(); it < myspace.end(); it++) {
+		if ((*it)->dead()) myremove(*it);
+	}
+	for (auto it = enemyspace.begin(); it < enemyspace.end(); it++) {
+		if ((*it)->dead()) enemyremove(*it);
+	}
+
+}
+
+
+//Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 double mid_width = 1075 * 0.5;
 double mid_height = 735 * 0.5;
 
-void fightspace::myrefresh()//Ïà¶ÔÓÚÕ½³¡µÄ×ø±ê
+void fightspace::myrefresh()//ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
 	
 	int i = 0;
-	//ÎÒ·½Õ½³¡
+	//ï¿½Ò·ï¿½Õ½ï¿½ï¿½
 	for (std::vector<fighter*>::iterator it = myspace.begin(); it < myspace.end(); it++, i++)
 	{
 		(*it)->move(mid_width - (i + mynum * 0.5 + 25) * card::w, 390);
 	}
-	//µÐ·½Õ½³¡
+	//ï¿½Ð·ï¿½Õ½ï¿½ï¿½
 	for (std::vector<fighter*>::iterator it = enemyspace.begin(); it < enemyspace.end(); it++, i++)
 	{
 		(*it)->move(mid_width - (i + enemynum * 0.5 + 25) * card::w, 190);
 	}
 }
 
-bool fightspace::on_handcard_useminion(card* c, QPoint pos)//´«¹ýÀ´Ïà¶ÔÓÚÕ½³¡µÄ×ø±ê£¬ÈôÊÇÖ÷´°¿ÚµÄÐèÒª×ª»»£¬x()-=163;
+bool fightspace::on_handcard_useminion(card* c, QPoint pos)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Òª×ªï¿½ï¿½ï¿½ï¿½x()-=163;
 {
 	if (myspace.size() == 7) return false;
-	int i = 0;//Ë³Ðò
+	int i = 0;//Ë³ï¿½ï¿½
 	for (std::vector<fighter*>::iterator it = myspace.begin(); it < myspace.end(); it++, i++)
 	{
 		if (pos.x() < (*it)->x() + card::w * 0.5) break;
@@ -34,15 +88,15 @@ bool fightspace::on_handcard_useminion(card* c, QPoint pos)//´«¹ýÀ´Ïà¶ÔÓÚÕ½³¡µÄ×
 	{
 		myspace[j] = myspace[j - 1];
 	}
-	myspace[i] = new fighter(0,0,c,this);//ÐèÒªÍ¨¹ýcard* ¹¹Ôìfighter
+	myspace[i] = new fighter(0,0,c,this);//ï¿½ï¿½ÒªÍ¨ï¿½ï¿½card* ï¿½ï¿½ï¿½ï¿½fighter
 	myrefresh();
 	return true;
 }
 
-fighter* fightspace::searchfighter(QPoint * p)//´«¹ýÀ´Ïà¶ÔÓÚÕ½³¡µÄ×ø±ê£¬ÈôÊÇÖ÷´°¿ÚµÄÐèÒª×ª»»£¬x()-=163;
+fighter* fightspace::searchfighter(QPoint * p)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Òª×ªï¿½ï¿½ï¿½ï¿½x()-=163;
 {
 	int i = 0;
-	if (p->y() > mid_height)//ÕÒÎÒ·½fighter
+	if (p->y() > mid_height)//ï¿½ï¿½ï¿½Ò·ï¿½fighter
 	{
 		for (std::vector<fighter*>::iterator it = myspace.begin(); it < myspace.end(); it++, i++)
 		{
@@ -50,7 +104,7 @@ fighter* fightspace::searchfighter(QPoint * p)//´«¹ýÀ´Ïà¶ÔÓÚÕ½³¡µÄ×ø±ê£¬ÈôÊÇÖ÷´°
 				return (*it);
 		}
 	}
-	else//ÕÒµÐ·½fighter
+	else//ï¿½ÒµÐ·ï¿½fighter
 	{
 		for (std::vector<fighter*>::iterator it = enemyspace.begin(); it < enemyspace.end(); it++, i++)
 		{

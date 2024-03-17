@@ -2,7 +2,7 @@
 #include <qlabel.h>
 #include "card.h"
 
-void handcard::on_card_postohandcard(QPoint p, bool start)
+void handcard::oncardpostohandcard(QPoint p, bool start)
 {
 	//接收到card中的鼠标坐标
 	if (p.x() > 0) {
@@ -80,7 +80,7 @@ void handcard::on_card_use(card* c, QPoint* pos)
 		break;
 	}
 }
-void handcard::on_cardlib_sendcard(card* c)
+void handcard::oncardlibsendcard(card* c)
 {
 	add(c);
 	refresh();

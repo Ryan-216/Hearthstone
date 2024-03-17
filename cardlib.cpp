@@ -22,7 +22,7 @@ card* cardlib::randomspell()
     return spelllib[i];
 }
 
-void cardlib::on_handcard_draw(int num)
+void cardlib::onhandcarddraw(int num)
 {
     for (int i = 0; i < num; i++)
     {

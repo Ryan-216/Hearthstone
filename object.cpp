@@ -37,7 +37,7 @@ object::object(int _x, int _y, int _hp, QString _name, QWidget* parent) {
 	this->init();
 	
 	this->hp = _hp;
-	this->hplabel = new minilabel(_hp, this);
+	this->hplabel = new minilabel(_hp,75,100, this);
 }
 
 void object::losehp(int val) {
