@@ -26,12 +26,14 @@ public:
     void myremove(fighter* f);
     void enemyrefresh();
     void myrefresh();
+    fighter* searchfighter(QPoint *p);//根据战场p找fighter
+    QPoint* convert(QPoint* p);//全局坐标转战场坐标
 public:
     int w;
     int h;
     QPoint pos;
 public slots:
-    void on_handcard_useminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
+    bool on_handcard_useminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
     void on_handcard_usedirspell(card* c, QPoint pos);//当手牌发出使用指向法术的信号时 战场发生相应变化 
     void on_handcard_usenodirspell(card* c);//当手牌发出使用非指向法术的信号时 战场发生相应变化 
     void on_handcard_useability(ability* a, QPoint* pos);//当英雄技能使用时 战场发生相应变化
