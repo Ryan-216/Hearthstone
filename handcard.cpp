@@ -56,7 +56,7 @@ void handcard::refresh()
 	int i = 0;	
 	for (std::vector<card*>::iterator it = mycard.begin(); it < mycard.end(); it++,i++)
 	{
-		(*it)->move(mid_width - (i + 0.5 + num * 0.5) * card::w, 0);
+		(*it)->move(mid_width - (0.5 + num * 0.5 - i) * card::w, 0);
 		qDebug() << (*it)->x();
 	}
 }
