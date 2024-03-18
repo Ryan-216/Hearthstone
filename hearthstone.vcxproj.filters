@@ -135,9 +135,6 @@
     <ClInclude Include="minilabel.h">
       <Filter>Header Files\help</Filter>
     </ClInclude>
-    <ClInclude Include="card.h">
-      <Filter>Header Files\cardclass</Filter>
-    </ClInclude>
     <ClInclude Include="object.h">
       <Filter>Header Files\object</Filter>
     </ClInclude>
@@ -147,14 +144,8 @@
     <ClInclude Include="ability.h">
       <Filter>Header Files\cardclass</Filter>
     </ClInclude>
-    <ClInclude Include="power.h">
-      <Filter>Header Files\other</Filter>
-    </ClInclude>
     <ClInclude Include="cardlib.h">
       <Filter>Header Files\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="hearthstone.h">
-      <Filter>Header Files\other</Filter>
     </ClInclude>
     <ClInclude Include="BaseScene.h">
       <Filter>Header Files</Filter>
@@ -181,6 +172,15 @@
     </QtMoc>
     <QtMoc Include="handcard.h">
       <Filter>Header Files\container</Filter>
+    </QtMoc>
+    <QtMoc Include="power.h">
+      <Filter>Header Files\other</Filter>
+    </QtMoc>
+    <QtMoc Include="hearthstone.h">
+      <Filter>Header Files\other</Filter>
+    </QtMoc>
+    <QtMoc Include="card.h">
+      <Filter>Header Files\cardclass</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

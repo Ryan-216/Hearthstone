@@ -3,6 +3,7 @@
 class power :
     public QLabel
 {
+    Q_OBJECT
 public:
     power(QWidget* parent);
 private:
@@ -15,6 +16,7 @@ public:
     void refresh();//每回合开始充满水晶
     
     //法力值是否足够使用卡牌？加一套信号与槽 
-
+public slots:
+    void onhandcardcostpower(int num);
 };
 

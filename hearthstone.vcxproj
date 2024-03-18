@@ -111,13 +111,13 @@
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="BattleScene.h" />
     <ClInclude Include="GameView.h" />
-    <ClInclude Include="hearthstone.h" />
+    <QtMoc Include="hearthstone.h" />
     <ClCompile Include="hearthstone.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ability.h" />
-    <ClInclude Include="card.h" />
+    <QtMoc Include="card.h" />
     <ClInclude Include="cardlib.h" />
     <QtMoc Include="fighter.h" />
     <QtMoc Include="fightspace.h" />
@@ -128,7 +128,7 @@
     <ClInclude Include="LoginScene.h" />
     <ClInclude Include="minilabel.h" />
     <ClInclude Include="object.h" />
-    <ClInclude Include="power.h" />
+    <QtMoc Include="power.h" />
     <ClInclude Include="widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

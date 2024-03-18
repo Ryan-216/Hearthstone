@@ -33,9 +33,13 @@ public slots:
    
 public  slots:
     void oncardlibsendcard(card* c);//接收卡牌 加入手牌
-    void oncardpostohandcard(QPoint p, bool strat);//接收手牌发来的坐标
-   
 
+
+public slots:
+    void onsendpos2space(QPoint p, bool start);
+   
+signals:
+    void send2main(QPoint p, bool start);
 
 signals:
     void costpower(int val);//向power发送信号 消耗量val个水晶
@@ -44,7 +48,7 @@ signals:
     void usedirspell(card* c, QPoint* pos) ;
     void usenodirspell(card* c) ;
     void useability(ability* a, QPoint* pos) ;
-    void postohearthstone(QPoint p, bool strat) ;//将在主窗口坐标系中的坐标传给主窗口
+    //void postohearthstone(QPoint p, bool strat) ;//将在主窗口坐标系中的坐标传给主窗口
 
 };
 

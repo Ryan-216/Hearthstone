@@ -34,7 +34,7 @@ public:
     int h;
     QPoint pos;
 public slots:
-    void onhandcarduseminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
+    bool onhandcarduseminion(card* c, QPoint pos);//当手牌发出使用随从的信号时 战场需要在相应位置添加一个随从 rhy
     void onhandcardusedirspell(card* c, QPoint pos);//当手牌发出使用指向法术的信号时 战场发生相应变化 
     void onhandcardusenodirspell(card* c);//当手牌发出使用非指向法术的信号时 战场发生相应变化 
     void onhandcarduseability(ability* a, QPoint* pos);//当英雄技能使用时 战场发生相应变化
@@ -46,6 +46,9 @@ public:
 
 public:
     //由于法术效果全部作用于战场 spellptrlib中的函数全部写到fightspace中
+
+   
+   
 
 
 };

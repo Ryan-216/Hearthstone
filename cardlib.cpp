@@ -1,6 +1,14 @@
 #include "cardlib.h"
 #include <cstdlib>
 
+cardlib::cardlib(QWidget* parent):label(parent)
+{
+    resize(62, 160);
+
+    //添加卡牌资源
+
+}
+
 card* cardlib::randomcard()
 {
     int a = 0, b = 40;

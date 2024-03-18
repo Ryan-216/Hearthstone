@@ -82,7 +82,7 @@ void card::leaveEvent(QEvent* event)
 void card::mousePressEvent(QMouseEvent* event)
 {
 	if (type != DIRSPELL) {
-		emit postohandcard(mapToParent(event->pos()), true);
+		emit sendpos2space(mapToParent(event->pos()), true);
 	}
 	else {
 		//记录鼠标的世界坐标.
@@ -98,7 +98,7 @@ void card::mouseMoveEvent(QMouseEvent* event)
 {
 
 	if (type != DIRSPELL) {
-		emit postohandcard(mapToParent(event->pos()), false);
+		emit sendpos2space(mapToParent(event->pos()), false);
 	}
 	else {
 		//移动中的鼠标位置相对于初始位置的相对位置.
@@ -111,15 +111,20 @@ void card::mouseMoveEvent(QMouseEvent* event)
 
 void card::mouseReleaseEvent(QMouseEvent* event)
 {
-	if (type != DIRSPELL) {
-		emit postohandcard(QPoint(-1,-1), true);
+	if (type == DIRSPELL) {
+		emit sendpos2space(QPoint(-1,-1), true);
 	}
 	else {
+		if (event->pos().y() < 750) {
+			emit use(this, event->pos());
+
+		}
+		else {
+			//回原地 需要xy
+		}
+
 
 	}
-
-
-	
 }
 
 bool card::operator==(card* c)

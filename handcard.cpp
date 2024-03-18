@@ -2,20 +2,14 @@
 #include <qlabel.h>
 #include "card.h"
 
-void handcard::oncardpostohandcard(QPoint p, bool start)
-{
-	//接收到card中的鼠标坐标
-	if (p.x() > 0) {
-		emit postohearthstone(this->mapToParent(p), start);
-	}
-	else {
-		emit postohearthstone(QPoint(-1,-1), true);
-	}
-	
+
+
+void handcard::onsendpos2space(QPoint p, bool start) {
+	setStyleSheet("border-width: 4px;border-style: solid;border-color: rgb(255,0, 255);");
+	emit send2main(p, start);
+	setAttribute(Qt::WA_TranslucentBackground);
 
 }
-
-
 
 
 handcard::handcard(QWidget* parent)

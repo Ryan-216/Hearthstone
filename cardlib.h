@@ -12,6 +12,8 @@ class cardlib:
 	public label
 {
 public:
+	cardlib(QWidget* parent);
+public:
 	cardlib() 
 	{
 		for (int i = 0; i < 40; i++)

@@ -15,6 +15,7 @@ class minilabel;
 class card :
     public QLabel
 {
+    Q_OBJECT
 public:
     enum CARDTYPE {
         MINION,//随从牌
@@ -60,10 +61,9 @@ public:
     //放大展示时尺寸
     int W;
     int H;
-    QPoint pos;//在父对象（handcard容器）坐标系中的位置 
-
-    QPoint m_point;
     QPoint m_pos;
+    QPoint m_point;
+    QPoint pos;
     
 //----------------------------------------数据成员-------------------------------------------------------------
 
@@ -104,8 +104,10 @@ protected:
 signals:
     //向handcard发送 表示本牌将被打出到pos位置 第一个参数传this 第二个参数传打出位置 对于非指向性法术 传0，0作为标识
     void use(card* c, QPoint pos);
+
+
 signals:
-    void postohandcard(QPoint p, bool start) {};//将鼠标在handcard中的坐标传给handcard
+    void sendpos2space(QPoint p, bool start);//将全局鼠标坐标发给space
 
     //---------------------------------------信号与槽-------------------------------------------------------------
 

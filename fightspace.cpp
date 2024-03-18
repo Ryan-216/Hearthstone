@@ -76,7 +76,7 @@ void fightspace::myrefresh()//�����ս��������
 	}
 }
 
-bool fightspace::on_handcard_useminion(card* c, QPoint pos)//�����������ս�������꣬���������ڵ���Ҫת����x()-=163;
+bool fightspace::onhandcarduseminion(card* c, QPoint pos)//�����������ս�������꣬���������ڵ���Ҫת����x()-=163;
 {
 	if (myspace.size() == 7) return false;
 	int i = 0;//˳��
