@@ -1,5 +1,5 @@
 #include "handcard.h"
-#include <qlabel.h>
+
 #include "card.h"
 
 
@@ -8,17 +8,32 @@ void handcard::onsendpos2space(QPoint p, bool start) {
 	setStyleSheet("border-width: 4px;border-style: solid;border-color: rgb(255,0, 255);");
 	emit send2main(p, start);
 	setAttribute(Qt::WA_TranslucentBackground);
-
 }
 
+//QSize handcard::sizeHint() const {
+//	return QSize(1400, 197);
+//}
+
+void handcard::pow_add()
+{
+	if (pow_max < 10)pow_max++;
+	pow_remain = pow_max;
+}
 
 handcard::handcard(QWidget* parent)
 {
-	mycard.resize(9, nullptr);
+	//setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+	//hide();
+	resize(1400, 197);
+	this->bg = new QLabel(this);
+	bg->setFixedSize(1400, 197);
+	// mycard.resize(9, nullptr);
+	mycard.reserve(9);
 }
 
 void handcard::add(card* c)
 {
+	c->setParent(this);
 	mycard.push_back(c);
 	refresh();
 }
@@ -40,13 +55,16 @@ void handcard::refresh()
 	int i = 0;	
 	for (std::vector<card*>::iterator it = mycard.begin(); it < mycard.end(); it++,i++)
 	{
-		(*it)->move(mid_width - (i + num * 0.5) * card::w, 780);
+		(*it)->move(mid_width - (mycard.size() * 0.5 - i) * card::w, 0);
+		(*it)->show();
+		qDebug() << i << (*it)->x();
 	}
+	
 }
 
-void handcard::firstdraw()
+void handcard::drawcard(int n)
 {
-	emit draw(3);
+	if (mycard.size() + n <= 9) emit draw(n);
 }
 
 
@@ -77,6 +95,5 @@ void handcard::on_card_use(card* c, QPoint* pos)
 void handcard::oncardlibsendcard(card* c)
 {
 	add(c);
-	refresh();
 }
 	

@@ -28,6 +28,7 @@ public:
     card(int _cost, void (*_dirfp)(QPoint target),std::string _name, QPoint p, QWidget* parent);//初始化指向性法术
     card( int _cost, std::string _name, void (*nondirfp)(), QPoint p, QWidget* parent);//初始化无指向法术
     card(int _cost, int _atk,int _hp,std::string _name, QPoint p, QWidget* parent);//初始化随从牌
+    card();
     
 //----------------------------------------构造函数-------------------------------------------------------------
 
