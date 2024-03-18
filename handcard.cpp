@@ -14,22 +14,21 @@ void handcard::onsendpos2space(QPoint p, bool start) {
 //	return QSize(1400, 197);
 //}
 
-
+void handcard::pow_add()
+{
+	if (pow_max < 10)pow_max++;
+	pow_remain = pow_max;
+}
 
 handcard::handcard(QWidget* parent)
 {
+	//setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+	//hide();
 	resize(1400, 197);
 	this->bg = new QLabel(this);
 	bg->setFixedSize(1400, 197);
-	bg->setPixmap(QPixmap(":/assert/handcard.png"));
 	// mycard.resize(9, nullptr);
 	mycard.reserve(9);
-	turnbutton = new QPushButton(this);
-	turnbutton->resize(100, 100);
-	turnbutton->move(0, 0);
-	qDebug() << turnbutton->pos();
-	turnbutton->setText("endturn");
-	this->show();
 }
 
 void handcard::add(card* c)
@@ -56,15 +55,16 @@ void handcard::refresh()
 	int i = 0;	
 	for (std::vector<card*>::iterator it = mycard.begin(); it < mycard.end(); it++,i++)
 	{
-		(*it)->move(mid_width - (0.5 + num * 0.5 - i) * card::w, 0);
-		qDebug() << (*it)->x();
+		(*it)->move(mid_width - (mycard.size() * 0.5 - i) * card::w, 0);
+		(*it)->show();
+		qDebug() << i << (*it)->x();
 	}
+	
 }
 
-void handcard::firstdraw()
+void handcard::drawcard(int n)
 {
-	qDebug() << "firstdraw";
-	emit draw(3);
+	if (mycard.size() + n <= 9) emit draw(n);
 }
 
 
@@ -94,8 +94,6 @@ void handcard::on_card_use(card* c, QPoint* pos)
 }
 void handcard::oncardlibsendcard(card* c)
 {
-	qDebug() << "oncardlibsendcard";
-	add(c);	
-	qDebug() << mycard.size();
+	add(c);
 }
 	

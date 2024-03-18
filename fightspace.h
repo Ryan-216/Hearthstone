@@ -21,11 +21,11 @@ private:
     ability* enemyability;
     ability* myability;
 public:
-    void enemyadd(fighter* f) {};
-    void enemyremove(fighter* f) {};
-    void myadd(fighter* f) {};
-    void myremove(fighter* f) {};
-    void enemyrefresh() {};
+    void enemyadd(fighter* f);
+    void enemyremove(fighter* f);
+    void myadd(fighter* f);
+    void myremove(fighter* f);
+    // void enemyrefresh() {};
     void myrefresh();
     fighter* searchfighter(QPoint *p);//根据战场p找fighter
     QPoint* convert(QPoint* p);//全局坐标转战场坐标

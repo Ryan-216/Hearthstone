@@ -49,7 +49,6 @@ card* cardlib::randomspell()
 
 void cardlib::onhandcarddraw(int num)
 {
-    qDebug() << "onhandcarddraw";
     for (int i = 0; i < num; i++)
     {
         emit sendcard(randomcard());

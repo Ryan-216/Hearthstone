@@ -11,7 +11,12 @@ class handcard :
 {
     Q_OBJECT
     //handcard内部自己维护一个法力水晶（逻辑）
-
+private:
+    int pow_max = 1;
+    int pow_remain = 1;
+    
+public:
+    void pow_add();
 public:
 
     handcard(QWidget* parent);
@@ -27,7 +32,7 @@ public:
     void add(card* c);//向容器中加一张牌√
     void remove(card* c);//单纯从容器中删除一张牌√
     void refresh();//刷新手牌 修改坐标√
-    void firstdraw();//初始抽牌信号√
+    void drawcard(int n);//初始抽牌信号√
     // void playcard(card* c);//出牌 删除出的手牌 发送信号
 public:
     int w;
@@ -50,7 +55,7 @@ signals:
 signals:
     void costpower(int val);//向power发送信号 消耗量val个水晶
     void draw(int num) ;
-    void useminion(card* c, QPoint* pos) ;
+    void useminion(card* c, QPoint* pos);
     void usedirspell(card* c, QPoint* pos) ;
     void usenodirspell(card* c) ;
     void useability(ability* a, QPoint* pos) ;

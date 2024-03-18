@@ -20,9 +20,10 @@ public:
 
 public:
     void enenmyact();//敌方行动
+    handcard* hand;
 private:
     fightspace* space;
-    handcard* hand;
+    
     cardlib* lib;
     power* pow;
     QPushButton* turnbutton;
