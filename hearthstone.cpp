@@ -16,7 +16,7 @@ hearthstone::hearthstone(QWidget *parent)
     space = new fightspace(this);
     space->resize(1075, 735);
     space->move(163, 0);
-    hand = new handcard(this);
+    hand = new handcard(this);//hand无法显示
     hand->resize(1400, 197);
     hand->move(0, 753);
     lib = new cardlib(this);

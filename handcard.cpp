@@ -10,9 +10,9 @@ void handcard::onsendpos2space(QPoint p, bool start) {
 	setAttribute(Qt::WA_TranslucentBackground);
 }
 
-QSize handcard::sizeHint() const {
-	return QSize(1400, 197);
-}
+//QSize handcard::sizeHint() const {
+//	return QSize(1400, 197);
+//}
 
 
 

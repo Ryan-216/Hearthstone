@@ -16,7 +16,7 @@ public:
 
     handcard(QWidget* parent);
     
-    QSize sizeHint()const;
+    //QSize sizeHint()const;
 private:
     std::vector<card*>mycard;//手牌容器 至多9张√
     QPushButton* turnbutton;
