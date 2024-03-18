@@ -1,7 +1,8 @@
 #pragma once
 #include <QWidget>
 #include <algorithm>
-
+#include<QPushButton>
+#include <qlabel.h>
 class card;
 class hero;
 class ability;
@@ -12,9 +13,14 @@ class handcard :
     //handcard内部自己维护一个法力水晶（逻辑）
 
 public:
+
     handcard(QWidget* parent);
+    
+    QSize sizeHint()const;
 private:
     std::vector<card*>mycard;//手牌容器 至多9张√
+    QPushButton* turnbutton;
+    QLabel* bg;
     //一开始初始化 vector大小就初始化为9 0-5有牌 6-8 nullptr√
     int num = 0;//当前手牌数量√
 public:

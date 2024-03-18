@@ -24,6 +24,7 @@ void MainWidget::start()
 void MainWidget::battle()
 {
     game_view.setScene(battle_scene);
+    battle_scene->hearthstone.start_battle();
     // battle_scene->battle();
 }
 

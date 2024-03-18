@@ -10,6 +10,9 @@ hearthstone::hearthstone(QWidget *parent)
     : QWidget(parent)
 {
     resize(1400, 950);
+    QLabel* bg = new QLabel(this);
+    bg->setFixedSize(1400, 950);
+    bg->setPixmap(QPixmap(":/assert/bg_battle.png"));
     space = new fightspace(this);
     space->resize(1075, 735);
     space->move(163, 0);
@@ -33,9 +36,9 @@ hearthstone::hearthstone(QWidget *parent)
     myturn = true;
     turns = 1;
 
-
     connect(hand, SIGNAL(costpower(int)),pow , SLOT(onhandcardcostpower(int)));
 
+    //抽卡
     connect(hand, SIGNAL(draw(int)),lib , SLOT(onhandcarddraw(int)));
     connect(lib, SIGNAL(sendcard(card *)),hand , SLOT(oncardlibsendcard(card *)));
 
@@ -49,18 +52,12 @@ hearthstone::hearthstone(QWidget *parent)
     connect(optionbutton, SIGNAL(clicked()),this , SLOT(openoption()));
 
     connect(hand, SIGNAL(send2main(QPoint , bool )), this, SLOT(onsend2main(QPoint, bool)));
-    
-
-
-
-   
- 
-
-
-
-
 }
 
+void hearthstone::start_battle()
+{
+    hand->firstdraw();
+}
 hearthstone::~hearthstone()
 {}
 

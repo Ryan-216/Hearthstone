@@ -3,6 +3,12 @@
 #include<QMouseEvent>
 #include <QPaintEvent>
 #include <qpainter.h>
+
+card::card()
+{
+	init();
+	this->setPixmap(QPixmap(":/assert/minion.png"));
+}
 card::card(int _cost, void(*_dirfp)(QPoint target), std::string _name, QPoint p, QWidget* parent):QLabel(parent)
 {
 	init();

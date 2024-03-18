@@ -11,28 +11,11 @@ class card;
 class cardlib:
 	public label
 {
+	Q_OBJECT
 public:
 	cardlib(QWidget* parent);
 public:
-	cardlib() 
-	{
-		for (int i = 0; i < 40; i++)
-		{
-			if (i < 20)
-			{
-				//card* c = new card;
-				//minionlib.push_back(c);
-				//lib.push_back(c);
-			}
-			else
-			{
-				//card* c = new card;
-				//spelllib.push_back(c);
-				//lib.push_back(c);
-			}
-
-		}
-	};
+	
 private:
 	std::vector<card*>minionlib;//随从牌库
 	std::vector<card*>spelllib;//法术牌库
@@ -44,7 +27,7 @@ public:
 
 
 signals:
-	void sendcard(card* c) {};//给handcard发送卡牌 完成抽卡的操作
+	void sendcard(card* c);//给handcard发送卡牌 完成抽卡的操作
 public slots:
 	void onhandcarddraw(int num);//接收到手牌的抽牌信号后准备卡牌 发还给handcard 调用sendcard信号
 

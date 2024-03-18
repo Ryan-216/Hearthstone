@@ -35,8 +35,9 @@ public:
     QPoint start;
     QPoint end;
     bool isdrawing;
+    void start_battle();
 public slots:
-    void oncardpostohearthstone(QPoint p,bool start);//接收到坐标
+    void oncardpostohearthstone(QPoint p, bool start) {};//接收到坐标
 
 public slots:
     void switchturn();//点击回合结束按钮后

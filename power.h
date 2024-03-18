@@ -17,6 +17,6 @@ public:
     
     //法力值是否足够使用卡牌？加一套信号与槽 
 public slots:
-    void onhandcardcostpower(int num);
+    void onhandcardcostpower(int num) {};
 };
 

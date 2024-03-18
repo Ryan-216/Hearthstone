@@ -118,7 +118,7 @@
   <ItemGroup>
     <ClInclude Include="ability.h" />
     <QtMoc Include="card.h" />
-    <ClInclude Include="cardlib.h" />
+    <QtMoc Include="cardlib.h" />
     <QtMoc Include="fighter.h" />
     <QtMoc Include="fightspace.h" />
     <QtMoc Include="handcard.h" />

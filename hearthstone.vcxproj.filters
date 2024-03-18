@@ -144,9 +144,6 @@
     <ClInclude Include="ability.h">
       <Filter>Header Files\cardclass</Filter>
     </ClInclude>
-    <ClInclude Include="cardlib.h">
-      <Filter>Header Files\lib</Filter>
-    </ClInclude>
     <ClInclude Include="BaseScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -181,6 +178,9 @@
     </QtMoc>
     <QtMoc Include="card.h">
       <Filter>Header Files\cardclass</Filter>
+    </QtMoc>
+    <QtMoc Include="cardlib.h">
+      <Filter>Header Files\lib</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>
