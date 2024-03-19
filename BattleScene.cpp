@@ -1,6 +1,5 @@
 #include "BattleScene.h"
-
-
+#include <QGraphicsProxyWidget>
 void BattleScene::battle()
 {
 	//≥ı º≥È≈∆
@@ -114,7 +113,9 @@ void BattleScene::draw_cards(Hero* hero, int num)
 	for (auto it = cards_.begin(); it < cards_.end()&& num > 0; it++)
 	{
 		hero->hand_cards.push_back(*it);
-		
+		this->addWidget((*it));
+		//connect((*it), &BaseCard::status_change, this, &BattleScene::paint_all);
+		//connect((*it), SIGNAL(status_change()), this, SLOT(paint_all()));
 		cards_.erase(it);
 		num--;
 	}
@@ -154,8 +155,7 @@ void BattleScene::paint_cards(Hero* hero)
 	for (BaseCard* card : hero->hand_cards)
 	{		
 		if (!card->isDragging)
-		{
-			this->addWidget(card);
+		{			
 			if (card->status_ == 0)
 			{
 				card->move(mid_width + (card->widght_ + 10) * (i - cards_num[0] * 0.5), (hero == hero_ ? height_ - card->height_ : 0));
@@ -172,11 +172,11 @@ void BattleScene::paint_cards(Hero* hero)
 				{
 					if (*it == card)
 					{
+						this->removeItem((*it)->graphicsProxyWidget());
 						hero->hand_cards.erase(it);
 						card->status_ = 1;
-						cards_.push_back(*it);
-						//clear();
-						//this->removeItem((*it)->graphicsProxyWidget())
+						cards_.push_back(*it);									
+						break;
 					}					
 				}
 			}

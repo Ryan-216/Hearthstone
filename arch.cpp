@@ -9,8 +9,8 @@ arch::arch(QWidget *parent)
     this->installEventFilter(this);
     this->show();
     this->setFixedSize(width_, height_);
-    game_view.setFixedSize(width_, height_);
-    game_view.setSceneRect(QRect(0, 0, width_, height_));
+    game_view.setFixedSize(width_ + 2, height_ + 2);
+    game_view.setSceneRect(0, 0, width_, height_);
     game_view.setParent(this);
     game_view.show();
 }

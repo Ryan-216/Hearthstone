@@ -15,7 +15,7 @@
 #include "MinionCard.h"
 #include "SpellCard.h"
 #include "qtimer.h"
-
+#include <map>
 
 class BattleScene :
     public BaseScene
@@ -58,6 +58,7 @@ private:
 
 signals:
     void draw();
+
     BattleScene()
     {           
         this->setSceneRect(QRect(0, 0, width_, height_));

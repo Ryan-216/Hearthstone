@@ -6,9 +6,11 @@
 #include <qpainter.h>
 
 class Hero;
+class BattleScene;
 class BaseCard :
     public QLabel
-{
+{  
+    //Q_OBJECT //加这个会报错  MSB4181	“QtRunWork”任务返回了 false，但未记录错误。
 
 public:
     int widght_ = 60, height_ = 100;
@@ -24,16 +26,16 @@ public:
     QPoint dragStartPos;
     QPoint startPos;
  
-    
-//signals:
-    // void status_change();//状态转变信号槽
+public: signals:
+    void status_change() {};//状态转变信号槽
+
 
     BaseCard()
     {
         //setMouseTracking(true);
         attack_ = 3;
         blood_ = 4;
-        cost_ = 3;       
+        cost_ = 3;             
     }
 
 public:
@@ -87,6 +89,7 @@ public:
                 if (event_parent.x() >= 100 && event_parent.x() <= 700 && event_parent.y() >= 200 && event_parent.y() <= 400)
                 {
                     status_ = 1;
+                    emit status_change();
                 }
                 else
                 {
