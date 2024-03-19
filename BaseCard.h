@@ -1,5 +1,5 @@
 #pragma once
-#include <qlabel.h>
+#include <QLabel>
 #include <QMouseEvent>
 #include <QPoint>
 #include <QPaintEvent>
@@ -25,10 +25,10 @@ public:
     bool isDragging = false;
     QPoint dragStartPos;
     QPoint startPos;
+    
  
 public: signals:
     void status_change() {};//×´Ì¬×ª±äÐÅºÅ²Û
-
 
     BaseCard()
     {
@@ -39,6 +39,12 @@ public: signals:
     }
 
 public:
+    void enterEvent(QEnterEvent* event)override {
+
+    }
+    void leaveEvent(QEvent* event)override {
+
+    }
     void mousePressEvent(QMouseEvent* event) override {
        
         if (event->button() == Qt::LeftButton) {
@@ -86,7 +92,7 @@ public:
             //qDebug()<<event->localPos().x();
             if (status_ != 2&& allow_click_ == true)
             {
-                if (event_parent.x() >= 100 && event_parent.x() <= 700 && event_parent.y() >= 200 && event_parent.y() <= 400)
+                if (event_parent.x() >= 100 && event_parent.x() <= 800 && event_parent.y() >= 150 && event_parent.y() <= 550)
                 {
                     status_ = 1;
                     emit status_change();
