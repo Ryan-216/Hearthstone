@@ -1,5 +1,7 @@
 #pragma once
 #include <QLabel>
+#include<qobject.h>
+#include<qlabel.h>
 #include <QMouseEvent>
 #include <QPoint>
 #include <QPaintEvent>
