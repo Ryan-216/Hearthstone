@@ -14,6 +14,7 @@ public:
     {
         this->setSceneRect(QRect(0, 0, width_, height_));
         bg_.setPixmap(QPixmap(":/arch/Assert/bg_login.png"));
+        bg_.setFixedSize(width_, height_);
         this->addWidget(&bg_);  
         
         btn_login->resize(100, 40);

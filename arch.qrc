@@ -4,5 +4,6 @@
         <file>Assert/bg_battle.png</file>
         <file>Assert/minion.png</file>
         <file>Assert/spell.png</file>
+        <file>Assert/hero.png</file>
     </qresource>
 </RCC>

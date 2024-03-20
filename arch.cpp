@@ -18,6 +18,9 @@ arch::arch(QWidget *parent)
 void arch::start()
 {
     game_view.setScene(login_scene);   
+    qDebug() << game_view.height();
+    qDebug() << login_scene->height_;
+    qDebug() << login_scene->bg_.height();
     connect(login_scene->btn_login, &QPushButton::clicked, this, &arch::battle);
 }
 

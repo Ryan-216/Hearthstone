@@ -18,11 +18,12 @@ public:
     QPoint start_pos_;
     QPoint end_pos_;
     int status_ = 0;//¿¨ÅÆ×´Ì¬£¬0£ºÊÖÅÆ£¬1£ºÕ½¶·£¬2£ºËÀÍö
-    bool allow_click_ = true;
+    bool allow_click_ = false;
     void Attack(BaseCard* target);
     void Attack(Hero* target);
     void Death();
     bool isDragging = false;
+    bool isAttacker = false;
     QPoint dragStartPos;
     QPoint startPos;
     
@@ -33,7 +34,7 @@ public: signals:
     BaseCard()
     {
         //setMouseTracking(true);
-        attack_ = 3;
+        attack_ = 4;
         blood_ = 4;
         cost_ = 3;             
     }
@@ -51,32 +52,33 @@ public:
             
             if (status_ != 2 && allow_click_ == true)
             {
+                isAttacker = false;
                 isDragging = true;
                 dragStartPos = event->pos();
                 startPos = this->pos();
                 event->accept();
             }
-            else if (status_ == 1);
+            /*else if (status_ == 1);
             {
                 QPoint event_parent = mapToParent(event->pos());
                 startPoint = event_parent;
                 endPoint = startPoint;
                 isDrawing = true;
-            }
+            }*/
             
         }
     }
 
     void mouseMoveEvent(QMouseEvent* event) override {
-        if (isDrawing && status_==1) {
+        /*if (isDrawing && status_==1) {
             QPoint event_parent = mapToParent(event->pos());
             endPoint = event_parent;
             update();
 
-        }
+        }*/
 
         if (isDragging && status_ != 2 && allow_click_ == true) {
-
+            isAttacker = true;
             QPoint diff = event->pos() - dragStartPos;
             this->move(pos() + diff);
             event->accept();
@@ -90,12 +92,12 @@ public:
             isDragging = false;
             //ÇĞ»»×ø±êÏµ
             //qDebug()<<event->localPos().x();
-            if (status_ != 2&& allow_click_ == true)
+            if (status_ != 2 && allow_click_ == true)
             {
-                if (event_parent.x() >= 100 && event_parent.x() <= 800 && event_parent.y() >= 150 && event_parent.y() <= 550)
+                if (event_parent.x() >= 100 && event_parent.x() <= 800 && event_parent.y() >= 200 && event_parent.y() <= 600)
                 {
                     status_ = 1;
-                    emit status_change();
+                    //emit status_change();
                 }
                 else
                 {
@@ -104,12 +106,12 @@ public:
                     update();
                 }
             }
-            else if(status_==1)
+            /*if(status_==1)
             {
                 endPoint = startPoint;
                 isDrawing = false;
                 update();
-            }
+            }*/
            
         }
        

@@ -8,7 +8,7 @@ class BaseScene :
     public QGraphicsScene
 {
 public:
-    int width_ = 900, height_ = 700;
+    int width_ = 900, height_ = 800;
     QLabel bg_;
 
 private:

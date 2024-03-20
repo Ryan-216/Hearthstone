@@ -24,7 +24,7 @@ public:
 
 private:
     Ui::archClass ui;
-    int width_ = 900, height_ = 700;//窗口宽高
+    int width_ = 900, height_ = 800;//窗口宽高
 
     QGraphicsView game_view;//游戏视图
     LoginScene* login_scene = new LoginScene;//登录场景

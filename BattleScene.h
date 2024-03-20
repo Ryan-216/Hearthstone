@@ -23,9 +23,12 @@ class BattleScene :
 public:
     Hero* hero_ = new Hero();
     Hero* enemy_ = new Hero();
-    QTimer* timer_;
+    QTimer* timer_1;
+    QTimer* timer_2;
     QLabel* hero_status = new QLabel;
     QLabel* enemy_status = new QLabel;
+    QLabel* notice = new QLabel;
+    QString notice_info = "Please move your minions to attack the enemy";
    
     /*QGraphicsTextItem* enemy_blood = new QGraphicsTextItem;
     QGraphicsTextItem* hero_blood = new QGraphicsTextItem;
@@ -43,12 +46,15 @@ public:
     void draw_cards(Hero* hero, int num);//³é¿¨º¯Êý
     void paint_cards(Hero* hero);//»­¿¨º¯Êý
     void paint_text(Hero* hero);
+    void paint_notice();
     void paint_all();//»­Í¼²Ûº¯Êý
     void turn_change();
     void manage_attack();
     void fake_mouse();//true click false release
+    void end(bool e);
     int mouse_ = 0;
     QPointF mouse_pos;
+    bool any_drag = false;
 
    
 private:
@@ -63,16 +69,21 @@ signals:
     {           
         this->setSceneRect(QRect(0, 0, width_, height_));
 
-        bg_.setPixmap(QPixmap(":/arch/Assert/bg_battle.png"));    
+        bg_.setPixmap(QPixmap(":/arch/Assert/bg_battle.png"));  
+        bg_.setFixedSize(width_, height_);
         btn_end_of_turn->setText("Your Turn");
         btn_end_of_turn->resize(100, 40);
         btn_end_of_turn->setFont(QFont("timesnewroman", 10, 4, 0));
         btn_end_of_turn->move((width_ - btn_end_of_turn->width()) / 2 + 400, (height_ - btn_end_of_turn->height()) / 2);
 
+
         this->addWidget(&bg_);
         this->addWidget(btn_end_of_turn);
         this->addWidget(hero_status);
         this->addWidget(enemy_status);
+        this->addWidget(notice);
+        this->addWidget(hero_);
+        this->addWidget(enemy_);
 
         for (int i = 0; i < 20; i++)
         {
