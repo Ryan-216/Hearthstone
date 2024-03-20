@@ -6,7 +6,11 @@
 #include <QPoint>
 #include <QPaintEvent>
 #include <qpainter.h>
+#include <ctime>
+#include <cstdlib>
 
+#include <random>
+#include<qtimer.h>
 class Hero;
 class BattleScene;
 class BaseCard :
@@ -28,6 +32,11 @@ public:
     bool isAttacker = false;
     QPoint dragStartPos;
     QPoint startPos;
+    QLabel blood_label;
+    QLabel attack_label;
+    QLabel cost_label;
+    int getRand(int min, int max);
+
     
  
 public: signals:
@@ -35,10 +44,38 @@ public: signals:
 
     BaseCard()
     {
-        //setMouseTracking(true);
-        attack_ = 4;
-        blood_ = 4;
-        cost_ = 3;             
+       
+        // 创建随机数引擎
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        // 创建分布器，指定范围为1-9
+        std::uniform_int_distribution<> dis(1, 9);
+
+        // 生成随机数
+        int randomNum = dis(gen);
+
+        attack_ =  randomNum + 1;
+        blood_ = randomNum + 1;
+        cost_ = randomNum;
+        blood_label.setParent(this);
+        attack_label.setParent(this);
+        cost_label.setParent(this);
+        QString text_blood = QString("%1").arg(blood_);
+        QString text_attack = QString("%1").arg(attack_);
+        QString text_cost = QString("%1").arg(cost_);
+        blood_label.setAlignment(Qt::AlignCenter);
+        attack_label.setAlignment(Qt::AlignCenter);
+        cost_label.setAlignment(Qt::AlignCenter);
+        blood_label.setText(text_blood);
+        attack_label.setText(text_attack);
+        cost_label.setText(text_cost);
+        blood_label.setFixedSize(20, 20);
+        attack_label.setFixedSize(20, 20);
+        cost_label.setFixedSize(20, 20);
+        blood_label.move(40,80);
+        attack_label.move(0,80);
+        cost_label.move(0,0);
     }
 
 public:

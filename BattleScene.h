@@ -29,6 +29,10 @@ public:
     QLabel* enemy_status = new QLabel;
     QLabel* notice = new QLabel;
     QString notice_info = "Please move your minions to attack the enemy";
+    int num_of_turn_ = 1;
+    QLabel ending;
+    QPushButton* back = new QPushButton;
+    
    
     /*QGraphicsTextItem* enemy_blood = new QGraphicsTextItem;
     QGraphicsTextItem* hero_blood = new QGraphicsTextItem;
@@ -74,8 +78,10 @@ signals:
         btn_end_of_turn->setText("Your Turn");
         btn_end_of_turn->resize(100, 40);
         btn_end_of_turn->setFont(QFont("timesnewroman", 10, 4, 0));
-        btn_end_of_turn->move((width_ - btn_end_of_turn->width()) / 2 + 400, (height_ - btn_end_of_turn->height()) / 2);
+        btn_end_of_turn->move((width_ - btn_end_of_turn->width()) / 2 + 401, (height_ - btn_end_of_turn->height()) / 2);
 
+        
+        
 
         this->addWidget(&bg_);
         this->addWidget(btn_end_of_turn);

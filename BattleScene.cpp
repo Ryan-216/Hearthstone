@@ -28,6 +28,8 @@ void BattleScene::battle()
 	connect(timer_2, &QTimer::timeout, [this]() {notice_info = (turn ? "Please move your minions to attack the enemy" : "The enemy is moving his minions to attack you"); paint_notice(); });
 
 	connect(this->btn_end_of_turn, &QPushButton::clicked,this, &BattleScene::turn_change);
+
+	
 	
 }
 
@@ -37,11 +39,11 @@ void BattleScene::manage_attack()
 	
 	if (turn)
 	{		
+
 		for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
 		{
 			if ((*it)->status_ == 1 && (*it)->isAttacker) { attacker = (*it); break; }
-		}
-		// qDebug() << any_drag;
+		}		
 		bool count_battle = false;
 		for (auto it = enemy_->hand_cards.begin(); it < enemy_->hand_cards.end(); it++)
 		{
@@ -53,6 +55,8 @@ void BattleScene::manage_attack()
 				{
 					// qDebug() << "attack";
 					attacker->Attack(*it);
+					hero_->remain_spell_ -= attacker->cost_;
+					paint_text(hero_);
 					qDebug() << "attacker";
 					qDebug() << attacker->status_;
 					attacker->isAttacker = false;
@@ -71,6 +75,8 @@ void BattleScene::manage_attack()
 			if (!count_battle)
 			{
 				attacker->Attack(enemy_);
+				hero_->remain_spell_ -= attacker->cost_;
+				paint_text(hero_);
 				qDebug() << "attack enemy";
 				qDebug() << enemy_->blood_;
 				if (enemy_->blood_ <= 0)
@@ -100,7 +106,9 @@ void BattleScene::manage_attack()
 		if (mouse_pos.x() - hero_->pos().x() <= hero_->width_ && mouse_pos.x() - hero_->pos().x() >= 0 &&
 			mouse_pos.y() - hero_->pos().y() <= hero_->height_ && mouse_pos.y() - hero_->pos().y() >= 0)
 		{
-			attacker->Attack(enemy_);
+			attacker->Attack(hero_);
+			enemy_->remain_spell_ -= attacker->cost_;
+			paint_text(enemy_);
 			qDebug() << "attack hero";
 			if (hero_->blood_ <= 0)end(false);
 		}
@@ -112,6 +120,8 @@ void BattleScene::manage_attack()
 					mouse_pos.y() - (*it)->pos().y() <= (*it)->height_ && mouse_pos.y() - (*it)->pos().y() >= 0)
 				{
 					attacker->Attack(*it);
+					enemy_->remain_spell_ -= attacker->cost_;
+					paint_text(enemy_);
 					attacker->isAttacker = false;
 					attacker->Death();
 					(*it)->Death();
@@ -139,13 +149,36 @@ void  BattleScene::fake_mouse()
 
 void BattleScene::end(bool e)
 {
-	qDebug() << (e ? "win" : "lose");
+	qDebug() << (e ? "win" : "lose");	
+	QString ending_text = e ? "win" : "lose";
+	this->addWidget(&ending);
+	ending.setAlignment(Qt::AlignCenter);
+	ending.setFont(QFont("timesnewroman", 50, 20, 0));
+	ending.setText(e ? "win" : "lose");
+	ending.setFixedSize(400, 500);
+	ending.move((width_ - ending.width()) * 0.5, (height_ - ending.height()) * 0.5);
+
+	back->setText("Back");
+	back->resize(100, 40);
+	back->setFont(QFont("timesnewroman", 10, 4, 0));
+	back->move((width_ - back->width()) / 2, (height_ - back->height()) / 2 + 200);
+	this->addWidget(back);
 }
+
+int i = 0;
 
 void BattleScene::turn_change()
 {
 	//true 我方 false 敌方
+
 	turn = !turn;
+	i++;
+	if (i == 2)
+	{
+		num_of_turn_++;
+		i = 0;
+	}
+	qDebug() << num_of_turn_;
 	for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
 	{
 		(*it)->allow_click_ = turn;//设置为是否移动
@@ -194,12 +227,12 @@ void BattleScene::paint_text(Hero* hero)
 	hero_status->setText(text_hero);
 	hero_status->setAlignment(Qt::AlignCenter);
 	hero_status->resize(300,30);
-	hero_status->move(mid_width - hero_status->width() * 0.5, 450);
+	hero_status->move(mid_width - hero_status->width() * 0.5, 600);
 
 	enemy_status->setText(text_enemy);
 	enemy_status->setAlignment(Qt::AlignCenter);
 	enemy_status->resize(300, 30);
-	enemy_status->move(mid_width - enemy_status->width() * 0.5, 150);
+	enemy_status->move(mid_width - enemy_status->width() * 0.5, 170);
 }
 
 void BattleScene::paint_notice()
@@ -207,7 +240,7 @@ void BattleScene::paint_notice()
 	int mid_width = width_ / 2;
 	notice->setAlignment(Qt::AlignCenter);
 	notice->setText(notice_info);
-	notice->resize(700, 40);
+	notice->resize(680, 40);
 	notice->move(mid_width - notice->width() * 0.5, 380);
 }
 
@@ -221,7 +254,17 @@ void  BattleScene::paint_all()
 
 void BattleScene::paint_cards(Hero* hero)
 {
-	
+	for (BaseCard* card : hero->hand_cards)
+	{
+		if (card->cost_ > hero->remain_spell_)
+		{
+			card->allow_click_ = false;
+		}
+		else
+		{
+			card->allow_click_ = true;
+		}
+	}
 	//0手牌，1战斗，2死亡
 	for (int i = 0; i < 3; i++) { hero->cards_num[i] = 0; }
 	int mid_width = width_ / 2;

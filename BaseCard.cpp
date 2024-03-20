@@ -18,4 +18,9 @@ void BaseCard::Death()
 	if (blood_ <= 0) status_ = 2;
 }
 
+int BaseCard::getRand(int min, int max)
+{	
+	return (rand() % (max - min + 1)) + min;
+}
+
 

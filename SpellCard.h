@@ -6,7 +6,7 @@ class SpellCard :
 public:
     SpellCard()
     {
-        this->setPixmap(QPixmap(":/arch/Assert/spell.png"));
+        this->setPixmap(QPixmap(":/arch/Assert/minion.png"));
     }
 };
 

@@ -13,6 +13,7 @@ arch::arch(QWidget *parent)
     game_view.setSceneRect(0, 0, width_, height_);
     game_view.setParent(this);
     game_view.show();
+    connect(battle_scene->back, &QPushButton::clicked, this, &arch::start);
 }
 
 void arch::start()
