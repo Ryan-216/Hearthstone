@@ -1,5 +1,6 @@
 #include "arch.h"
 #include<qslider.h>
+#include<stdlib.h>
 
 arch::arch(QWidget *parent)
     : QWidget(parent)
@@ -14,6 +15,7 @@ arch::arch(QWidget *parent)
     game_view.setParent(this);
     game_view.show();
     connect(battle_scene->back, &QPushButton::clicked, this, &arch::start);
+    connect(login_scene->btn_leave, &QPushButton::clicked, []() {exit(0); });
 }
 
 void arch::start()

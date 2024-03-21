@@ -36,6 +36,7 @@ public:
     QLabel attack_label;
     QLabel cost_label;
     int getRand(int min, int max);
+    void refresh();
 
     
  

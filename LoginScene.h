@@ -8,6 +8,7 @@ class LoginScene :
 {
 public:
     QPushButton* btn_login = new QPushButton;
+    QPushButton* btn_leave = new QPushButton;
     QFont* font_login = new QFont("timesnewroman", 20, 8, 0);
 
     LoginScene()
@@ -18,12 +19,16 @@ public:
         this->addWidget(&bg_);  
         
         btn_login->resize(100, 40);
-        btn_login->move((width_ - btn_login->width()) / 2, (height_ - btn_login->height()) / 2 + 200);
-
+        btn_login->move((width_ - btn_login->width()) / 2, (height_ - btn_login->height()) / 2 +120);
         btn_login->setFont(*font_login);
         btn_login->setText("Strat");
-
         this->addWidget(btn_login);
+
+        btn_leave->resize(100, 40);
+        btn_leave->move((width_ - btn_leave->width()) / 2, (height_ - btn_leave->height()) / 2 + 220);
+        btn_leave->setFont(*font_login);
+        btn_leave->setText("Leave");
+        this->addWidget(btn_leave);
     }
 
 };

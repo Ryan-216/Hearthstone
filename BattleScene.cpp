@@ -4,6 +4,41 @@
 void BattleScene::battle()
 {
 	//初始抽牌
+	this->setSceneRect(QRect(0, 0, width_, height_));
+
+	bg_.setPixmap(QPixmap(":/arch/Assert/bg_battle.png"));
+	bg_.setFixedSize(width_, height_);
+	btn_end_of_turn->setText("Your Turn");
+	btn_end_of_turn->resize(100, 40);
+	btn_end_of_turn->setFont(QFont("timesnewroman", 10, 4, 0));
+	btn_end_of_turn->move((width_ - btn_end_of_turn->width()) / 2 + 401, (height_ - btn_end_of_turn->height()) / 2);
+
+
+
+
+	this->addWidget(&bg_);
+	this->addWidget(btn_end_of_turn);
+	this->addWidget(hero_status);
+	this->addWidget(enemy_status);
+	this->addWidget(notice);
+	this->addWidget(hero_);
+	this->addWidget(enemy_);
+
+	for (int i = 0; i < 20; i++)
+	{
+		if (i < 10)
+		{
+			MinionCard* card = new MinionCard;
+			cards_.push_back(card);
+		}
+		else
+		{
+			SpellCard* card = new SpellCard;
+			cards_.push_back(card);
+		}
+	}
+	enemy_->setPixmap(QPixmap(":/arch/Assert/enemy.png"));
+
 	draw_cards(hero_, 5);
 	draw_cards(enemy_, 5);	
 	paint_text(hero_);
@@ -26,10 +61,7 @@ void BattleScene::battle()
 	timer_2 = new QTimer();
 	timer_2->start(5000);
 	connect(timer_2, &QTimer::timeout, [this]() {notice_info = (turn ? "Please move your minions to attack the enemy" : "The enemy is moving his minions to attack you"); paint_notice(); });
-
 	connect(this->btn_end_of_turn, &QPushButton::clicked,this, &BattleScene::turn_change);
-
-	
 	
 }
 
@@ -55,14 +87,17 @@ void BattleScene::manage_attack()
 				{
 					// qDebug() << "attack";
 					attacker->Attack(*it);
+					attacker->refresh();
+					attacker->isAttacker = false;
+					(*it)->refresh();
 					hero_->remain_spell_ -= attacker->cost_;
+					qDebug() << "hero_remain";
+					qDebug() << hero_->remain_spell_;
+					qDebug() << "attacker->cost";
+					qDebug() << attacker->cost_<<attacker->attack_<<attacker->blood_;
 					paint_text(hero_);
-					qDebug() << "attacker";
-					qDebug() << attacker->status_;
 					attacker->isAttacker = false;
 					attacker->Death();
-					qDebug() << attacker->status_;
-					
 					(*it)->Death();
 					paint_cards(enemy_);
 					paint_cards(hero_);
@@ -76,6 +111,7 @@ void BattleScene::manage_attack()
 			{
 				attacker->Attack(enemy_);
 				hero_->remain_spell_ -= attacker->cost_;
+				attacker->isAttacker = false;
 				paint_text(hero_);
 				qDebug() << "attack enemy";
 				qDebug() << enemy_->blood_;
@@ -107,9 +143,9 @@ void BattleScene::manage_attack()
 			mouse_pos.y() - hero_->pos().y() <= hero_->height_ && mouse_pos.y() - hero_->pos().y() >= 0)
 		{
 			attacker->Attack(hero_);
+			attacker->isAttacker = false;
 			enemy_->remain_spell_ -= attacker->cost_;
-			paint_text(enemy_);
-			qDebug() << "attack hero";
+			paint_text(enemy_);		
 			if (hero_->blood_ <= 0)end(false);
 		}
 		for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
@@ -120,7 +156,12 @@ void BattleScene::manage_attack()
 					mouse_pos.y() - (*it)->pos().y() <= (*it)->height_ && mouse_pos.y() - (*it)->pos().y() >= 0)
 				{
 					attacker->Attack(*it);
+					attacker->refresh();
+					attacker->isAttacker = false;
+					(*it)->refresh();
 					enemy_->remain_spell_ -= attacker->cost_;
+					qDebug() << "attacker->cost";
+					qDebug() << attacker->cost_ << attacker->attack_ << attacker->blood_;
 					paint_text(enemy_);
 					attacker->isAttacker = false;
 					attacker->Death();
@@ -149,7 +190,6 @@ void  BattleScene::fake_mouse()
 
 void BattleScene::end(bool e)
 {
-	qDebug() << (e ? "win" : "lose");	
 	QString ending_text = e ? "win" : "lose";
 	this->addWidget(&ending);
 	ending.setAlignment(Qt::AlignCenter);
@@ -172,6 +212,17 @@ void BattleScene::turn_change()
 	//true 我方 false 敌方
 
 	turn = !turn;
+	notice_info = turn ? "Please move your minions to attack the enemy" : "The enemy is moving his minions to attack you";
+	paint_notice();
+
+	for (auto it = hero_->hand_cards.begin(); it < hero_->hand_cards.end(); it++)
+	{
+		(*it)->isAttacker = false;
+	}
+	for (auto it = enemy_->hand_cards.begin(); it < enemy_->hand_cards.end(); it++)
+	{
+		(*it)->isAttacker = false;
+	}
 	i++;
 	if (i == 2)
 	{
@@ -222,8 +273,8 @@ void BattleScene::draw_cards(Hero* hero, int num)
 void BattleScene::paint_text(Hero* hero)
 {
 	int mid_width = width_ / 2;
-	QString text_hero = QString("HP: %1, MSP: %2, RSP: %3, CARD0: %4, CARD1: %5").arg(hero_->blood_).arg(hero_->max_spell).arg(hero_->remain_spell_).arg(hero_->cards_num[0]).arg(hero_->cards_num[1]);
-	QString text_enemy = QString("HP: %1, MSP: %2, RSP: %3,CARD0: %4,, CARD1: %5").arg(enemy_->blood_).arg(enemy_->max_spell).arg(enemy_->remain_spell_).arg(enemy_->cards_num[0]).arg(enemy_->cards_num[1]);
+	QString text_hero = QString("HP: %1, MSP: %2, RSP: %3, HCARD: %4, MCARD: %5").arg(hero_->blood_).arg(hero_->max_spell).arg(hero_->remain_spell_).arg(hero_->cards_num[0]).arg(hero_->cards_num[1]);
+	QString text_enemy = QString("HP: %1, MSP: %2, RSP: %3, HCARD: %4, MCARD: %5").arg(enemy_->blood_).arg(enemy_->max_spell).arg(enemy_->remain_spell_).arg(enemy_->cards_num[0]).arg(enemy_->cards_num[1]);
 	hero_status->setText(text_hero);
 	hero_status->setAlignment(Qt::AlignCenter);
 	hero_status->resize(300,30);
@@ -259,10 +310,14 @@ void BattleScene::paint_cards(Hero* hero)
 		if (card->cost_ > hero->remain_spell_)
 		{
 			card->allow_click_ = false;
+			card->setFrameShape(QFrame::Box);
+			card->setStyleSheet("border-width: 1px;border-style: solid;border-color: rgb(192, 192, 192);");
 		}
 		else
 		{
 			card->allow_click_ = true;
+			card->setFrameShape(QFrame::Box);
+			card->setStyleSheet("border-width: 1px;border-style: solid;border-color: rgb(255, 0, 0);");
 		}
 	}
 	//0手牌，1战斗，2死亡
